@@ -26,7 +26,7 @@ if (jQuery) { // TBF
     gridToolsHtml += "  <div><a href=\"#\" id=\"gdt-close\">Close</a></div>";
     gridToolsHtml += "</div>";
     
-    $("head").append("<link rel='stylesheet' type='text/css' href='file:///C:/Documents%20and%20Settings/Antu/Mes%20documents/Dropbox/Con%20Vero/foundation-grid-displayer/bookmarklet-style.css'>");
+    $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/bookmarklet-style.css'>");
     $("body").prepend(gridHtml).prepend(gridToolsHtml);  
     $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1);
     
