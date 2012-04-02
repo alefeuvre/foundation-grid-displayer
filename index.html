@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+	
+	<title>Foundation grid displayer</title>
+  
+	<!-- Included CSS Files -->
+	<link rel="stylesheet" href="stylesheets/foundation.css">
+	<link rel="stylesheet" href="stylesheets/app.css">
+
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="stylesheets/ie.css">
+	<![endif]-->
+
+	
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+  <script>
+  var dontclick = function() {  
+    alert("Don't click me, drag me!");
+    return false;
+  };
+  </script>
+
+</head>
+<body>
+
+	<div class="container">
+
+		<header class="row">
+			<div class="ten columns">
+				<h1>Foundation grid displayer</h2>
+				<p><a href="#">In-browser prototyping</a> made even easier with this bookmarklet which displays ZURB Foundation's grid.</p>
+			</div>
+      <div class="two columns">
+        <ul>      
+					<li><a href="https://twitter.com/intent/tweet?text=In-browser%20prototyping%20made%20even%20easier%20with%20this%20bookmarklet%20which%20displays%20ZURB%20Foundation%27s%20grid&url=http://alefeuvre.github.com/foundation-grid-displayer/&via=jiraisurfer" class="nice small white button">Tweet me</a></li>
+          <li><a href="http://github.com/alefeuvre/foundation-grid-displayer/" class="nice small white button">Fork me</a></li>
+        </ul>
+      </div>
+		</header>
+
+		<div class="row">
+			<div class="four columns">
+				<h2>Install</h2>
+        <p>This bookmarklet is for Firefox and WebKit browsers only.</p>
+        <a href='javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"http://alefeuvre.github.com/foundation-grid-displayer/bookmarklet.js";%20%20%20head.appendChild(bklScript);%20})();' onclick="return dontclick();" class="nice large blue button hide-on-phones" title="Foundation grid displayer"><span style="display: none;">Foundation grid displayer </span>Drag me to your bookmarks</a>
+        <p class="hide-on-phones">Right after adding the bookmarklet, try it on this page.</p>
+        <p class="show-on-phones">Sorry, for tablets and computers only.</p>
+      </div>
+			<div class="four columns">
+				<h2>Screenshots</h2>
+        <div id="example1">&nbsp;</div>
+      </div>
+			<div class="four columns">
+				<h2>&nbsp;</h2><!-- I know, I shouldn't do that -->
+        <div id="example2">&nbsp;</div>
+      </div>
+    </div>
+    
+    <footer class="row">
+			<div class="twelve columns">
+        <h2>About</h2>        
+				<ul class="disc">
+					<li><a href="http://foundation.zurb.com">Foundation</a> is a rapid prototyping framework by ZURB.</li>
+					<li>This bookmarklet was created by <a href="http://twitter.com/jiraisurfer">Antoine Lefeuvre</a>.</li>
+					<li>Both Foundation and this bookmarklet are under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- Included JS Files -->
+	<script src="javascripts/jquery.min.js"></script>
+	<script src="javascripts/modernizr.foundation.js"></script>
+
+</body>
+</html>
