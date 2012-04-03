@@ -1,5 +1,6 @@
 header {
-  margin: 2rem 0 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
   border-bottom: 1px solid #DDD;
 }
 header a.button {
