@@ -1,0 +1,118 @@
+.rounded-corners, #grid-displayer-tools div:nth-child(2), #grid-displayer-tools div:nth-child(3), #grid-displayer-tools div:nth-child(4), #grid-displayer-tools div:nth-child(5), #grid-displayer-tools div:last-child a {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+}
+
+#grid-displayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  /* Default value, use body data-grid-zindex to overwrite */
+  -moz-box-sizing: padding-box;
+  -webkit-box-sizing: padding-box;
+  -ms-box-sizing: padding-box;
+  box-sizing: padding-box;
+}
+#grid-displayer .row {
+  height: 100%;
+}
+#grid-displayer .one {
+  height: 100%;
+  background: black;
+  /* Default value, use body data-grid-color to overwrite */
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+  /* Default value, use body data-grid-opacity to overwrite */
+}
+
+#grid-displayer-tools {
+  background: white;
+  color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  width: 100%;
+  font: normal 12px sans-serif;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+  padding: 0.75em;
+  border-bottom: 4px solid #333333;
+}
+#grid-displayer-tools div {
+  float: left;
+  margin-right: 2em;
+}
+#grid-displayer-tools div:first-child {
+  font-size: 1.5em;
+  color: #333333;
+  text-shadow: #eeeeee 2px 2px 1px;
+}
+#grid-displayer-tools div:nth-child(2), #grid-displayer-tools div:nth-child(3), #grid-displayer-tools div:nth-child(4), #grid-displayer-tools div:nth-child(5) {
+  margin-top: 0.2em;
+  border: 1px solid #AAA;
+  padding-left: 0.5em;
+  color: #555;
+}
+#grid-displayer-tools div:nth-last-child(2) {
+  margin-top: 0.3em;
+  font-style: italic;
+  color: #555;
+}
+#grid-displayer-tools div:last-child {
+  float: right;
+}
+#grid-displayer-tools div:last-child a {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #555555), color-stop(100%, #000000));
+  background-image: -webkit-linear-gradient(#555555, #000000);
+  background-image: -moz-linear-gradient(#555555, #000000);
+  background-image: -o-linear-gradient(#555555, #000000);
+  background-image: -ms-linear-gradient(#555555, #000000);
+  background-image: linear-gradient(#555555, #000000);
+  color: white;
+  text-decoration: none;
+  border: 1px outset #333333;
+}
+#grid-displayer-tools div:last-child a:hover {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000000), color-stop(100%, #555555));
+  background-image: -webkit-linear-gradient(#000000, #555555);
+  background-image: -moz-linear-gradient(#000000, #555555);
+  background-image: -o-linear-gradient(#000000, #555555);
+  background-image: -ms-linear-gradient(#000000, #555555);
+  background-image: linear-gradient(#000000, #555555);
+}
+#grid-displayer-tools div:last-child a:active {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000000), color-stop(100%, #555555));
+  background-image: -webkit-linear-gradient(#000000, #555555);
+  background-image: -moz-linear-gradient(#000000, #555555);
+  background-image: -o-linear-gradient(#000000, #555555);
+  background-image: -ms-linear-gradient(#000000, #555555);
+  background-image: linear-gradient(#000000, #555555);
+  border: 1px inset #333333;
+}
+#grid-displayer-tools label {
+  padding-right: 0.3em;
+}
+#grid-displayer-tools input {
+  border: none;
+  color: #333333;
+  background-color: #DDD;
+  width: 2em;
+  vertical-align: middle;
+  padding-left: 0.3em;
+}
+#grid-displayer-tools input:focus {
+  background-color: #CCC;
+}
+#grid-displayer-tools #gdt-color {
+  width: 3em;
+}

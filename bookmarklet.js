@@ -1,16 +1,43 @@
-if (jQuery) { // TBF
+if (typeof jQuery === "undefined") {
+  alert("Sorry, jQuery and Foundation have to be installed on this site first.");
+  
+} else {
+  // Close grid displayer
   var removeGridDisplayer = function() {  
     $("#grid-displayer-tools").remove();
     $("#grid-displayer").remove();
   };
   
+  // Setters
+  var setGridColor = function(gridColor) {  
+    $("#grid-displayer .one").css("background-color", gridColor);
+  }
+  var setGridOpacity = function(gridOpacity) {  
+    $("#grid-displayer .one").css("opacity", gridOpacity);
+  }
+  var setGridZindex = function(gridZindex) {  
+    $("#grid-displayer").css("z-index", gridZindex);
+  }
+  
+  // Removes grid displayer when the bookmarklet is clicked for a second time
   if ($("#grid-displayer").length) {
     removeGridDisplayer();
     
   } else {
-    var gridHtml, gridToolsHtml;
-
-    gridHtml = "<div id=\"grid-displayer\" class=\"container\"><div class=\"row\">";
+    var gridHtml, gridToolsHtml,
+      dataGridColor   = $("body").data("grid-color"),
+      gdtColor        = (typeof dataGridColor === "undefined") ? "black" : dataGridColor,
+      dataGridOpacity = $("body").data("grid-opacity"),
+      gdtOpacity      = (typeof dataGridOpacity === "undefined") ? "0.3" : dataGridOpacity,
+      dataGridZindex  = $("body").data("grid-zindex"),
+      gdtZindex       = (typeof dataGridZindex === "undefined") ? "0" : dataGridZindex;
+      containerIsUsed = $(".container").length,
+      gdtContainer    = (containerIsUsed) ? "checked" : "";
+    
+    // Grid and toolbar HTML
+    gridHtml  = "<div id=\"grid-displayer\"";
+    gridHtml += (containerIsUsed) ? " class=\"container\"" : "";
+    gridHtml += "><div class=\"row\">";
     for(var i = 0; i < 12; i++) {
       gridHtml += "<div class=\"one columns\">&nbsp;</div>";
     }
@@ -18,44 +45,47 @@ if (jQuery) { // TBF
     
     gridToolsHtml  = "<div id=\"grid-displayer-tools\">";
     gridToolsHtml += "  <div>Foundation grid displayer</div>";
-    gridToolsHtml += "  <div><label for=\"gdt-color\">Columns colour:</label> <input type=\"text\" id=\"gdt-color\" value=\"black\" /></div>";
-    gridToolsHtml += "  <div><label for=\"gdt-opacity\">and opacity:</label> <input type=\"text\" id=\"gdt-opacity\" value=\"0.3\" /></div>";
-    gridToolsHtml += "  <div><label for=\"gdt-index\">z-index:</label> <input type=\"text\" id=\"gdt-index\" value=\"0\" /></div>";
-    gridToolsHtml += "  <div><label for=\"gdt-container\">With container:</label> <input type=\"checkbox\" id=\"gdt-container\" checked /></div>";
+    gridToolsHtml += "  <div><label for=\"gdt-color\">Columns colour</label> <input type=\"text\" id=\"gdt-color\" value=\"" + gdtColor + "\" /></div>";
+    gridToolsHtml += "  <div><label for=\"gdt-opacity\">Opacity</label> <input type=\"text\" id=\"gdt-opacity\" value=\"" + gdtOpacity + "\" /></div>";
+    gridToolsHtml += "  <div><label for=\"gdt-zindex\">z-index</label> <input type=\"text\" id=\"gdt-zindex\" value=\"" + gdtZindex + "\" /></div>";
+    gridToolsHtml += "  <div><label for=\"gdt-container\">With container</label> <input type=\"checkbox\" id=\"gdt-container\" " + gdtContainer + " /></div>";
     gridToolsHtml += "  <div>update on blur</div>";
     gridToolsHtml += "  <div><a href=\"#\" id=\"gdt-close\">Close</a></div>";
     gridToolsHtml += "</div>";
     
-    $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/bookmarklet-style.css'>");
+    // Init
+    $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/bookmarklet-style.css'>");
     $("body").prepend(gridHtml).prepend(gridToolsHtml);  
-    $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1);
+    $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1);  
+        
+    // Custom default parameters
+    if (typeof dataGridColor !== "undefined") {
+      setGridColor(gdtColor);
+    }
+    if (typeof dataGridOpacity !== "undefined") {
+      setGridOpacity(gdtOpacity);
+    }
+    if (typeof dataGridZindex !== "undefined") {
+      setGridZindex(gdtZindex);
+    }
     
+    // Updates
     $("#grid-displayer-tools #gdt-color").change(function() {
-      $("#grid-displayer .one").css("background-color", $(this).val());
-    });
-    
+      setGridColor($(this).val());
+    });    
     $("#grid-displayer-tools #gdt-opacity").change(function() {
-      $("#grid-displayer .one").css("opacity", $(this).val());
-    });
-    
-    $("#grid-displayer-tools #gdt-index").change(function() {
-      $("#grid-displayer").css("z-index", $(this).val());
-    });
-    
-    $("#grid-displayer-tools #gdt-container").change(function() {
-    
+      setGridOpacity($(this).val());
+    });    
+    $("#grid-displayer-tools #gdt-zindex").change(function() {
+      setGridZindex($(this).val());
+    });    
+    $("#grid-displayer-tools #gdt-container").change(function() {    
       $("#grid-displayer").toggleClass("container");
-      /*if ($(this).is(":checked")) {
-      } else {
-      }*/
     });
     
     $("#grid-displayer-tools #gdt-close").click(function() {
       alert("Click the bookmarklet to re-open");      
       removeGridDisplayer();
     });
-  }
-  
-} else {
-  alert("Sorry, jQuery has to be installed on this site first.");
-} 
+  } 
+}
