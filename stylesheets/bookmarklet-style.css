@@ -46,6 +46,9 @@
   padding: 0.75em;
   border-bottom: 4px solid #333333;
 }
+#grid-displayer-tools:hover {
+  opacity: 0.9 !important;
+}
 #grid-displayer-tools div {
   float: left;
   margin-right: 2em;

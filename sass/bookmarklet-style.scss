@@ -40,7 +40,7 @@ $fgd-colour: #333;
   border-bottom: 4px solid $fgd-colour;
 
   &:hover {
-    //opacity: 0.9 !important; // Mixin cannot be used here http://stackoverflow.com/questions/7115959/adding-important-using-a-compass-mixin
+    opacity: 0.9 !important; // Mixin cannot be used here http://stackoverflow.com/questions/7115959/adding-important-using-a-compass-mixin
   }
   
   div {
