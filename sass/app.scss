@@ -1,0 +1,26 @@
+header {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  border-bottom: 1px solid #DDD;
+    
+  a.button {
+    display: block;
+  }
+}
+
+#example1, #example2 {
+  height: 15rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#example1 {
+  background-image: url('../images/example1.png');
+}
+#example2 {
+  background-image: url('../images/example2.png');
+}
+
+footer {
+  margin-top: 2rem !important;
+  border-top: 1px solid #DDD;
+}
