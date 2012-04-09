@@ -120,6 +120,6 @@
 #grid-displayer-tools input:focus {
   background-color: #CCC;
 }
-#grid-displayer-tools input #gdt-color {
+#grid-displayer-tools input#gdt-color {
   width: 3em;
 }
