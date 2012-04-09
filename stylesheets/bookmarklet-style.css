@@ -45,6 +45,10 @@
   opacity: 0.9;
   padding: 0.75em;
   border-bottom: 4px solid #333333;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
 }
 #grid-displayer-tools:hover {
   opacity: 0.9 !important;
@@ -116,6 +120,6 @@
 #grid-displayer-tools input:focus {
   background-color: #CCC;
 }
-#grid-displayer-tools #gdt-color {
+#grid-displayer-tools input #gdt-color {
   width: 3em;
 }

@@ -38,6 +38,7 @@ $fgd-colour: #333;
   @include opacity(0.9);
   padding: 0.75em;
   border-bottom: 4px solid $fgd-colour;
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0 5px 5px);
 
   &:hover {
     opacity: 0.9 !important; // Mixin cannot be used here http://stackoverflow.com/questions/7115959/adding-important-using-a-compass-mixin
@@ -106,9 +107,9 @@ $fgd-colour: #333;
     &:focus {
       background-color: #CCC;
     }
-  }
-  
-  #gdt-color {
-    width: 3em;
+    
+    #gdt-color {
+      width: 3em;
+    }
   }
 }
