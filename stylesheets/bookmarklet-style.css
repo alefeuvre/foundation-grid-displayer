@@ -15,10 +15,10 @@
   height: 100%;
   z-index: 0;
   /* Default value, use body data-grid-zindex to overwrite */
-  -moz-box-sizing: padding-box;
-  -webkit-box-sizing: padding-box;
-  -ms-box-sizing: padding-box;
-  box-sizing: padding-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
 }
 #grid-displayer .row {
   height: 100%;
@@ -43,7 +43,7 @@
   font: normal 12px sans-serif;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9;
-  padding: 0.75em;
+  padding: 1em;
   border-bottom: 4px solid #333333;
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
@@ -58,12 +58,12 @@
   margin-right: 2em;
 }
 #grid-displayer-tools div:first-child {
+  margin-right: 4em;
   font-size: 1.5em;
   color: #333333;
   text-shadow: #eeeeee 2px 2px 1px;
 }
 #grid-displayer-tools div:nth-child(2), #grid-displayer-tools div:nth-child(3), #grid-displayer-tools div:nth-child(4), #grid-displayer-tools div:nth-child(5) {
-  margin-top: 0.2em;
   border: 1px solid #AAA;
   padding-left: 0.5em;
   color: #555;
@@ -108,6 +108,7 @@
 }
 #grid-displayer-tools label {
   padding-right: 0.3em;
+  vertical-align: -0.1em;
 }
 #grid-displayer-tools input {
   border: none;
@@ -115,7 +116,9 @@
   background-color: #DDD;
   width: 2em;
   vertical-align: middle;
-  padding-left: 0.3em;
+  padding: 0 0 0 0.3em;
+  margin: 0;
+  height: 1.5em;
 }
 #grid-displayer-tools input:focus {
   background-color: #CCC;
