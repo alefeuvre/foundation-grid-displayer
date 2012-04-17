@@ -84,7 +84,6 @@ if (typeof jQuery === "undefined") {
     });
     
     $("#grid-displayer-tools #gdt-close").click(function() {
-      alert("Click the bookmarklet to re-open");      
       removeGridDisplayer();
     });
   } 
