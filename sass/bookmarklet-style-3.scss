@@ -1,0 +1,6 @@
+$column-selector: ".one:nth-child(odd)";
+@import "common-style";
+
+#grid-displayer .row {
+  border-right: 2px solid rgba(0,0,0,0.3);
+}

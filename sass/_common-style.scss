@@ -1,0 +1,115 @@
+@import "compass/css3";
+
+$fgd-colour: #333;
+
+.rounded-corners {
+  @include border-radius(2px);
+}
+
+#grid-displayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Default value, use body data-grid-zindex to overwrite */
+  @include box-sizing(padding-box);
+  
+  .row  {
+    height: 100%
+  }
+  
+  #{$column-selector} {
+    height: 100%;
+    background: black; /* Default value, use body data-grid-color to overwrite */
+    @include opacity(0.3); /* Default value, use body data-grid-opacity to overwrite */
+  }
+}
+
+#grid-displayer-tools {
+  background: white;
+  color: black;  
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  width: 100%;
+  font: normal 12px sans-serif;
+  @include opacity(0.9);
+  padding: 0.75em;
+  border-bottom: 4px solid $fgd-colour;
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0 5px 5px);
+
+  &:hover {
+    opacity: 0.9 !important; // Mixin cannot be used here http://stackoverflow.com/questions/7115959/adding-important-using-a-compass-mixin
+  }
+  
+  div {
+    float: left;
+    margin-right: 2em;    
+  
+    &:first-child {
+      font-size: 1.5em; 
+      color: $fgd-colour;
+      @include text-shadow(#EEE 2px 2px 1px);
+    }
+    
+    &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5) {      
+      margin-top: 0.2em;
+      border: 1px solid #AAA;
+      padding-left: 0.5em;
+      color: #555;
+      @extend .rounded-corners;
+    }    
+  
+    &:nth-last-child(2) {    
+      margin-top: 0.3em;
+      font-style: italic; 
+      color: #555;
+    }
+    
+    &:last-child {
+      float: right;
+    
+      a {
+        display: inline-block;
+        padding: 0.2em 0.5em;
+        @extend .rounded-corners;
+        @include background-image(linear-gradient(#555, black));
+        color: white;
+        text-decoration: none;    
+        border: 1px outset $fgd-colour;
+        
+        &:hover {        
+          @include background-image(linear-gradient(black, #555));
+        }
+        
+        &:active {
+          @include background-image(linear-gradient(black, #555));
+          border: 1px inset $fgd-colour;
+        }
+      }
+    }
+  }
+  
+  label {
+    padding-right: 0.3em;
+  }
+  
+  input {
+    border: none;
+    color: $fgd-colour;
+    background-color: #DDD;
+    width: 2em;
+    vertical-align: middle;
+    padding-left: 0.3em;
+    
+    &:focus {
+      background-color: #CCC;
+    }
+    
+    &#gdt-color {
+      width: 3em;
+    }
+  }
+}
