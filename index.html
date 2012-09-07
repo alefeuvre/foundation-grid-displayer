@@ -44,7 +44,7 @@
 
   </script>
 </head>
-<body>
+<body data-grid-color="blue" data-grid-opacity="0.5" data-grid-zindex="10">
 
 	<div class="container">
 
@@ -64,18 +64,33 @@
 		<div class="row">
 			<div class="four columns">
 				<h2>Install</h2>
-        <p class="hide-on-phones">This bookmarklet is for Firefox and WebKit browsers only.</p>
-        <a href='javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"http://alefeuvre.github.com/foundation-grid-displayer/bookmarklet.js";%20%20%20head.appendChild(bklScript);%20})();' onclick="return dontclick();" class="nice large blue button hide-on-phones" title="Foundation grid displayer"><span style="display: none;">Foundation grid displayer </span>Drag me to your bookmarks</a>
-        <p class="hide-on-phones">Right after adding the bookmarklet, try it on this page.</p>
+        <p class="hide-on-phones">For Firefox and WebKit browsers only.</p>
         <p class="show-on-phones">Sorry, for tablets and computers only.</p>
       </div>
-			<div class="four columns">
-				<h2>Screenshots</h2>
-        <div id="example1">&nbsp;</div>
+			<div class="eight columns">
+				<h2>Examples</h2>
+        <p class="hide-on-phones">Install the bookmarklet and try it on these Foundation-powered sites:</p>
       </div>
-			<div class="four columns">
-				<h2>&nbsp;</h2><!-- I know, I shouldn't do that -->
-        <div id="example2">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="four columns">
+        <p><a href='javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"http://alefeuvre.github.com/foundation-grid-displayer/bookmarklet.js";%20%20%20head.appendChild(bklScript);%20})();' onclick="return dontclick();" class="nice large blue button hide-on-phones" title="Foundation grid displayer"><span style="display: none;">Foundation grid displayer </span>Drag me to your bookmarks</a></p>
+        <p class="hide-on-phones">Right after adding the bookmarklet, try it on this page or on the examples &rarr;</p>
+      </div>
+      <div class="four columns">
+        <a href="http://foundation.zurb.com/about.php" target="_blank"><img src="images/example1.png"></a>
+      </div>
+      <div class="four columns">
+        <a href="http://www.translationisux.com" target="_blank"><img src="images/example2.png"></a>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="twelve columns">
+        <h2>Custom default parameters</h2>        
+        <p>If your site features a black background or you always want the grid displayer on top, you'll grow tired of editing the parameters every time the page or the displayer is reloaded. Set them once and for all, add these data attributes to the body:</p>
+        <script type="text/javascript" src="http://snipt.net/embed/dfa99649ec014f04edda74261dbd3457/"></script>        
+        <p style="margin-top: 1em;">Note: "With container" is automatically ticked whenever a element with the class "container" is detected.</p>
       </div>
     </div>
     
