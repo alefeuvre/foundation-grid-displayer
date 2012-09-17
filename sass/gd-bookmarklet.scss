@@ -1,0 +1,107 @@
+@import "compass/css3";
+
+$gd-colour: #333;
+
+#grid-displayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Default value, use body data-grid-zindex to overwrite */
+  @include box-sizing(padding-box);
+  
+  .gd-container, .gd-row {
+    height: 100%
+  }
+  
+  .gd-column {
+    &:not(.dontshow) {
+      height: 100%;
+    }
+  }
+}
+
+#grid-displayer-tools {
+  background: white;
+  color: black;  
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
+  width: 100%;
+  font: normal 12px sans-serif;
+  @include opacity(0.9);
+  padding: 0.75em;
+  border-bottom: 4px solid $gd-colour;
+  @include box-shadow(rgba(0, 0, 0, 0.2) 0 5px 5px);
+
+  &:hover {
+    opacity: 0.9 !important; // Mixin cannot be used here http://stackoverflow.com/questions/7115959/adding-important-using-a-compass-mixin
+  }
+  
+  .framework-specific {
+    display: none;
+  }
+  
+  div {
+    float: left;
+    margin-right: 2em;    
+  
+    &:first-child {
+      font-size: 1.5em; 
+      color: $gd-colour;
+      @include text-shadow(#EEE 2px 2px 1px);
+    }
+  
+    &:nth-last-child(2) {    
+      margin-top: 0.3em;
+      font-style: italic; 
+      color: #555;
+    }
+    
+    &:last-child {
+      float: right;
+    
+      a {
+        display: inline-block;
+        padding: 0.2em 0.5em;
+        @extend .rounded-corners;
+        @include background-image(linear-gradient(#555, black));
+        color: white;
+        text-decoration: none;    
+        border: 1px outset $gd-colour;
+        
+        &:hover {        
+          @include background-image(linear-gradient(black, #555));
+        }
+        
+        &:active {
+          @include background-image(linear-gradient(black, #555));
+          border: 1px inset $gd-colour;
+        }
+      }
+    }
+  }
+  
+  label {
+    padding-right: 0.3em;
+  }
+  
+  input {
+    border: none;
+    color: $gd-colour;
+    background-color: #DDD;
+    width: 2em;
+    vertical-align: middle;
+    padding-left: 0.3em;
+    
+    &:focus {
+      background-color: #CCC;
+    }
+    
+    &#gdt-color {
+      width: 3em;
+    }
+  }
+}
