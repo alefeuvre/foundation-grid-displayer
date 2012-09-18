@@ -8,9 +8,9 @@ if (typeof jQuery === "undefined") {
     $("#grid-displayer").remove();
   },
   
-  // Setters
-  frameworkIsSet = false,
-  setGridFramework = function(gridFramework) {
+  // Build grid displayer
+  gdIsBuilt = false,
+  buildGridDisplayer = function(gridFramework) {
   
     var $gdContainer = $("#grid-displayer .gd-container"),
     $gdRow           = $("#grid-displayer .gd-row"),
@@ -18,7 +18,7 @@ if (typeof jQuery === "undefined") {
     colsHtml         = "",
     gridNbcols       = parseInt($gdTools.find("#gdt-nbcols").val());
     
-    if (frameworkIsSet) {
+    if (gdIsBuilt) {
       $gdContainer.removeClass().addClass("gd-container");
       $gdRow.removeClass().addClass("gd-row").css("border-right", 0).empty();
       $("#grid-displayer-tools .framework-specific").hide();
@@ -61,11 +61,15 @@ if (typeof jQuery === "undefined") {
     setGridColor($gdTools.find("#gdt-color").val(), hasBorder);
     setGridOpacity($gdTools.find("#gdt-opacity").val(), hasBorder);
     
-    if (!frameworkIsSet) {
+    if (!gdIsBuilt) {
+      $gdTools.find("#gdt-options").show();
+      setGridZindex($gdTools.find("#gdt-zindex").val());
       $("#grid-displayer").show();
-      frameworkIsSet = true;
+      gdIsBuilt = true;
     }
   },
+  
+  // Setters
   setGridColor = function(gridColor, hasBorder) {  
     $("#grid-displayer .gd-column:not(.dontshow)").css("background-color", gridColor);
     if (hasBorder) {
@@ -87,41 +91,24 @@ if (typeof jQuery === "undefined") {
     $("#grid-displayer .gd-row").css("border-right", "2px solid " + rgbaColor);
   };
   
-  // Removes grid displayer when the bookmarklet is clicked for a second time
-  if ($("#grid-displayer").length) {
-    removeGridDisplayer();
-    
+  if ($("#grid-displayer").length) { // Close grid displayer when the bookmarklet is clicked for a second time
+    removeGridDisplayer();    
   } else {
+  
     // Default parameters
-    var gdFramework   = "",
-    gdNbcols          = 12,
-    gdColor           = "black",
-    gdOpacity         = "0.3",
-    gdZindex          = "0",
-    dataGridFramework = $("body").data("grid-framework"),
-    dataGridNbcols    = $("body").data("grid-nbcols"),
-    dataGridColor     = $("body").data("grid-color"),
-    dataGridOpacity   = $("body").data("grid-opacity"),
-    dataGridZindex    = $("body").data("grid-zindex");  
+    var dataGridFramework = $("body").data("grid-framework"),
+    dataGridNbcols        = $("body").data("grid-nbcols"),
+    dataGridColor         = $("body").data("grid-color"),
+    dataGridOpacity       = $("body").data("grid-opacity"),
+    dataGridZindex        = $("body").data("grid-zindex"),
     
-    if (typeof dataGridFramework !== "undefined") {
-      gdFramework = dataGridFramework;
-      setGridFramework(gdFramework);
-    }
-    if (typeof dataGridColor !== "undefined") {
-      gdColor = dataGridColor;
-      setGridColor(gdColor);
-    }
-    if (typeof dataGridOpacity !== "undefined") {
-      gdOpacity = dataGridOpacity;
-      setGridOpacity(gdOpacity);
-    }
-    if (typeof dataGridZindex !== "undefined") {
-      gdZindex = dataGridZindex;
-      setGridZindex(gdZindex);
-    }   
+    gdFramework           = (typeof dataGridFramework === "undefined") ? "" : dataGridFramework,
+    gdNbcols              = (typeof dataGridNbcols === "undefined") ?    "12" : dataGridNbcols,
+    gdColor               = (typeof dataGridColor === "undefined") ?     "black" : dataGridColor,
+    gdOpacity             = (typeof dataGridOpacity === "undefined") ?   "0.3" : dataGridOpacity,
+    gdZindex              = (typeof dataGridZindex === "undefined") ?    "0" : dataGridZindex;
     
-    // Grid and toolbar HTML
+    // HTML
     var gridHtml = "<div id=\"grid-displayer\" style=\"display: none;\"><div class=\"gd-container\"><div class=\"gd-row\"></div></div></div>",
     frameworks = {"bo": "Bootstrap",
                   "bf": "Bootstrap (fluid)",
@@ -137,11 +124,13 @@ if (typeof jQuery === "undefined") {
       gridToolsHtml += ">" + value + "</option>";
     });
     gridToolsHtml += "  </select></div>";
-    gridToolsHtml += "  <div class=\"framework-specific twb\"><label for=\"gdt-nbcols\">Nb cols</label> <input type=\"text\" id=\"gdt-nbcols\" value=\"" + gdNbcols + "\" /></div>";
-    gridToolsHtml += "  <div><label for=\"gdt-color\">Columns colour</label> <input type=\"text\" id=\"gdt-color\" value=\"" + gdColor + "\" /></div>";
-    gridToolsHtml += "  <div><label for=\"gdt-opacity\">Opacity</label> <input type=\"text\" id=\"gdt-opacity\" value=\"" + gdOpacity + "\" /></div>";
-    gridToolsHtml += "  <div><label for=\"gdt-zindex\">z-index</label> <input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>";
-    gridToolsHtml += "  <div>update on blur</div>";
+    gridToolsHtml += "  <div id=\"gdt-options\">";
+    gridToolsHtml += "    <div class=\"framework-specific twb\"><label for=\"gdt-nbcols\">Nb cols</label> <input type=\"text\" id=\"gdt-nbcols\" value=\"" + gdNbcols + "\" /></div>";
+    gridToolsHtml += "    <div><label for=\"gdt-color\">Columns colour</label> <input type=\"text\" id=\"gdt-color\" value=\"" + gdColor + "\" /></div>";
+    gridToolsHtml += "    <div><label for=\"gdt-opacity\">Opacity</label> <input type=\"text\" id=\"gdt-opacity\" value=\"" + gdOpacity + "\" /></div>";
+    gridToolsHtml += "    <div><label for=\"gdt-zindex\">z-index</label> <input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>";
+    gridToolsHtml += "    <div>update on blur</div>";
+    gridToolsHtml += "  </div>";
     gridToolsHtml += "  <div><a href=\"#\" id=\"gdt-close\">Close</a></div>";
     gridToolsHtml += "</div>";
     
@@ -149,16 +138,20 @@ if (typeof jQuery === "undefined") {
     $("body").prepend(gridHtml).prepend(gridToolsHtml);  
     $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1); 
     
-    // Updates
+    if (typeof dataGridFramework !== "undefined") {
+      buildGridDisplayer(gdFramework);
+    }
+    
+    // Actions
     $("#grid-displayer-tools #gdt-framework").change(function() {
       gdFramework = $(this).val();
       if (gdFramework == "f3" || gdFramework == "f2") {
         $("#grid-displayer-tools #gdt-nbcols").val(12);
       }
-      setGridFramework(gdFramework);
+      buildGridDisplayer(gdFramework);
     });    
     $("#grid-displayer-tools #gdt-nbcols").change(function() {
-      setGridFramework(gdFramework);
+      buildGridDisplayer(gdFramework);
     });    
     $("#grid-displayer-tools #gdt-color").change(function() {
       setGridColor($(this).val(), gdFramework == "f3");
