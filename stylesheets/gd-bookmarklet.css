@@ -17,90 +17,109 @@
 }
 
 #grid-displayer-tools {
-  background: white;
-  color: black;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999999;
   width: 100%;
-  font: normal 12px sans-serif;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
-  opacity: 0.9;
-  padding: 0.75em;
-  border-bottom: 4px solid #333333;
-  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
-  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 5px 5px;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f6f6f6), color-stop(100%, #e3e3e3));
+  background-image: -webkit-linear-gradient(#f6f6f6, #e3e3e3);
+  background-image: -moz-linear-gradient(#f6f6f6, #e3e3e3);
+  background-image: -o-linear-gradient(#f6f6f6, #e3e3e3);
+  background-image: -ms-linear-gradient(#f6f6f6, #e3e3e3);
+  background-image: linear-gradient(#f6f6f6, #e3e3e3);
+  font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  padding: 7px 10px;
+  border-bottom: 1px solid #C5C5C5;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 5px 5px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 5px 5px;
+  -o-box-shadow: rgba(0, 0, 0, 0.1) 0 5px 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 5px 5px;
 }
 #grid-displayer-tools:hover {
-  opacity: 0.9 !important;
+  opacity: 1 !important;
+}
+#grid-displayer-tools select, #grid-displayer-tools input {
+  width: auto !important;
+  height: auto !important;
+  line-height: auto !important;
+  margin: 0 !important;
+  color: #777777;
+  font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
+}
+#grid-displayer-tools .field {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #FDFDFD;
+  float: left;
+  margin-right: 2em;
+}
+#grid-displayer-tools .field-inside, #grid-displayer-tools select, #grid-displayer-tools #gdt-options div {
+  background: #EAEAEA;
+  -moz-box-shadow: rgba(0, 0, 0, 0.075) 0 1px 1px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.075) 0 1px 1px inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.075) 0 1px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.075) 0 1px 1px inset;
+  color: #777777;
+  border: 1px solid #C9C9C9;
+  padding: 4px;
+}
+#grid-displayer-tools select {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+}
+#grid-displayer-tools label {
+  font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  color: #AAA;
+  display: inline-block;
+  padding: 3px 0 0 5px;
+  margin: 0;
+}
+#grid-displayer-tools input {
+  background: transparent;
+  border: 0;
+  padding: 0 10px 0 0;
+  -moz-box-shadow: transparent 0 0 0;
+  -webkit-box-shadow: transparent 0 0 0;
+  -o-box-shadow: transparent 0 0 0;
+  box-shadow: transparent 0 0 0;
+  width: 40px !important;
+  text-align: right;
+}
+#grid-displayer-tools #gdt-options div {
+  display: inline-block;
+}
+#grid-displayer-tools #gdt-options div:first-child {
+  -moz-border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -o-border-radius: 3px 0 0 3px;
+  -ms-border-radius: 3px 0 0 3px;
+  -khtml-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+#grid-displayer-tools #gdt-options div:not(:last-child) {
+  border-right: 0;
+}
+#grid-displayer-tools #gdt-options div:last-child {
+  -moz-border-radius: 0 3px 3px 0;
+  -webkit-border-radius: 0 3px 3px 0;
+  -o-border-radius: 0 3px 3px 0;
+  -ms-border-radius: 0 3px 3px 0;
+  -khtml-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
 }
 #grid-displayer-tools #gdt-options, #grid-displayer-tools .framework-specific {
   display: none;
 }
-#grid-displayer-tools div {
-  float: left;
-  margin-right: 2em;
-}
-#grid-displayer-tools div:first-child {
-  font-size: 1.5em;
-  color: #333333;
-  text-shadow: #eeeeee 2px 2px 1px;
-}
-#grid-displayer-tools div:nth-last-child(2) {
-  margin-top: 0.3em;
-  font-style: italic;
-  color: #555;
-}
-#grid-displayer-tools div:last-child {
+#grid-displayer-tools #gdt-close {
   float: right;
-}
-#grid-displayer-tools div:last-child a {
-  display: inline-block;
-  padding: 0.2em 0.5em;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #555555), color-stop(100%, #000000));
-  background-image: -webkit-linear-gradient(#555555, #000000);
-  background-image: -moz-linear-gradient(#555555, #000000);
-  background-image: -o-linear-gradient(#555555, #000000);
-  background-image: -ms-linear-gradient(#555555, #000000);
-  background-image: linear-gradient(#555555, #000000);
-  color: white;
-  text-decoration: none;
-  border: 1px outset #333333;
-}
-#grid-displayer-tools div:last-child a:hover {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000000), color-stop(100%, #555555));
-  background-image: -webkit-linear-gradient(#000000, #555555);
-  background-image: -moz-linear-gradient(#000000, #555555);
-  background-image: -o-linear-gradient(#000000, #555555);
-  background-image: -ms-linear-gradient(#000000, #555555);
-  background-image: linear-gradient(#000000, #555555);
-}
-#grid-displayer-tools div:last-child a:active {
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000000), color-stop(100%, #555555));
-  background-image: -webkit-linear-gradient(#000000, #555555);
-  background-image: -moz-linear-gradient(#000000, #555555);
-  background-image: -o-linear-gradient(#000000, #555555);
-  background-image: -ms-linear-gradient(#000000, #555555);
-  background-image: linear-gradient(#000000, #555555);
-  border: 1px inset #333333;
-}
-#grid-displayer-tools label {
-  padding-right: 0.3em;
-}
-#grid-displayer-tools input {
-  border: none;
-  color: #333333;
-  background-color: #DDD;
-  width: 2em;
-  vertical-align: middle;
-  padding-left: 0.3em;
-}
-#grid-displayer-tools input:focus {
-  background-color: #CCC;
-}
-#grid-displayer-tools input#gdt-color {
-  width: 3em;
 }

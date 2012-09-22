@@ -1,6 +1,7 @@
 @import "compass/css3";
 
-$gd-colour: #333;
+$gdt-colour: #777;
+$gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 
 #grid-displayer {
   position: fixed;
@@ -22,85 +23,90 @@ $gd-colour: #333;
 }
 
 #grid-displayer-tools {
-  background: white;
-  color: black;  
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999999;
-  width: 100%;
-  font: normal 12px sans-serif;
-  @include opacity(0.9);
-  padding: 0.75em;
-  border-bottom: 4px solid $gd-colour;
-  @include box-shadow(rgba(0, 0, 0, 0.2) 0 5px 5px);
+  width: 100%;  
+  @include background-image(linear-gradient(#F6F6F6, #E3E3E3));
+  font: $gdt-font;
+  padding: 7px 10px;
+  border-bottom: 1px solid #C5C5C5;
+  @include box-shadow(rgba(0, 0, 0, 0.1) 0 5px 5px);  
 
   &:hover {
-    opacity: 0.9 !important; // Mixin cannot be used here http://stackoverflow.com/questions/7115959/adding-important-using-a-compass-mixin
+    opacity: 1 !important; // Mixin cannot be used here http://stackoverflow.com/questions/7115959/adding-important-using-a-compass-mixin
+  }
+  
+  select, input { // reset
+    width: auto !important;
+    height: auto !important;
+    line-height: auto !important;
+    margin: 0 !important;
+    color: $gdt-colour;
+    font: $gdt-font !important;
+  }
+  
+  .field {
+    @include border-radius(3px);
+    border: 1px solid #FDFDFD;    
+    float: left;
+    margin-right: 2em;  
+  }
+  
+  .field-inside {  
+    background: #EAEAEA;
+    @include box-shadow(rgba(0, 0, 0, 0.075) 0 1px 1px inset);  
+    color: $gdt-colour;
+    border: 1px solid #C9C9C9;
+    padding: 4px;
+  }
+  
+  select {
+    @extend .field-inside;
+    @include border-radius(3px);
+  }
+  
+  label {
+    font: $gdt-font;
+    font-size: 10px;
+    color: #AAA;
+    display: inline-block;
+    padding: 3px 0 0 5px; 
+    margin: 0;
+  }
+  
+  input {
+    background: transparent;
+    border: 0;
+    padding: 0 10px 0 0;
+    @include box-shadow(transparent 0 0 0);  
+    width: 40px !important;
+    text-align: right;
+  }
+  
+  #gdt-options div {
+    display: inline-block;
+    @extend .field-inside;
+    
+    &:first-child {    
+      @include border-radius(3px 0 0 3px);
+    }
+    
+    &:not(:last-child) {
+      border-right: 0;
+    }
+    
+    &:last-child {    
+      @include border-radius(0 3px 3px 0);
+    }
   }
   
   #gdt-options, .framework-specific {
     display: none;
   }
   
-  div {
-    float: left;
-    margin-right: 2em;    
-  
-    &:first-child {
-      font-size: 1.5em; 
-      color: $gd-colour;
-      @include text-shadow(#EEE 2px 2px 1px);
-    }
-  
-    &:nth-last-child(2) {    
-      margin-top: 0.3em;
-      font-style: italic; 
-      color: #555;
-    }
-    
-    &:last-child {
-      float: right;
-    
-      a {
-        display: inline-block;
-        padding: 0.2em 0.5em;
-        @extend .rounded-corners;
-        @include background-image(linear-gradient(#555, black));
-        color: white;
-        text-decoration: none;    
-        border: 1px outset $gd-colour;
-        
-        &:hover {        
-          @include background-image(linear-gradient(black, #555));
-        }
-        
-        &:active {
-          @include background-image(linear-gradient(black, #555));
-          border: 1px inset $gd-colour;
-        }
-      }
-    }
-  }
-  
-  label {
-    padding-right: 0.3em;
-  }
-  
-  input {
-    border: none;
-    color: $gd-colour;
-    background-color: #DDD;
-    width: 2em;
-    vertical-align: middle;
-    padding-left: 0.3em;
-    
-    &:focus {
-      background-color: #CCC;
-    }
-    
-    &#gdt-color {
-      width: 3em;
-    }
+  #gdt-close {
+    float: right;
   }
 }

@@ -115,8 +115,8 @@ if (typeof jQuery === "undefined") {
                   "f3": "Foundation 3",
                   "f2": "Foundation 2" },
     gridToolsHtml = "<div id=\"grid-displayer-tools\">";
-    gridToolsHtml += "  <div>Grid displayer</div>";
-    gridToolsHtml += "  <div><select id=\"gdt-framework\">";
+    //gridToolsHtml += "  <div>Grid displayer</div>";
+    gridToolsHtml += "  <div class=\"field\"><select id=\"gdt-framework\">";
     gridToolsHtml += "    <option>Choose your framework</option>";
     $.each(frameworks, function(key, value) {     
       gridToolsHtml += "<option value=\"" + key + "\"";
@@ -124,17 +124,17 @@ if (typeof jQuery === "undefined") {
       gridToolsHtml += ">" + value + "</option>";
     });
     gridToolsHtml += "  </select></div>";
-    gridToolsHtml += "  <div id=\"gdt-options\">";
-    gridToolsHtml += "    <div class=\"framework-specific twb\"><label for=\"gdt-nbcols\">Nb cols</label> <input type=\"text\" id=\"gdt-nbcols\" value=\"" + gdNbcols + "\" /></div>";
+    gridToolsHtml += "  <div id=\"gdt-options\" class=\"field\">";
     gridToolsHtml += "    <div><label for=\"gdt-color\">Columns colour</label> <input type=\"text\" id=\"gdt-color\" value=\"" + gdColor + "\" /></div>";
-    gridToolsHtml += "    <div><label for=\"gdt-opacity\">Opacity</label> <input type=\"text\" id=\"gdt-opacity\" value=\"" + gdOpacity + "\" /></div>";
-    gridToolsHtml += "    <div><label for=\"gdt-zindex\">z-index</label> <input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>";
-    gridToolsHtml += "    <div>update on blur</div>";
+    gridToolsHtml += "<div><label for=\"gdt-opacity\">Opacity</label> <input type=\"text\" id=\"gdt-opacity\" value=\"" + gdOpacity + "\" /></div>";
+    gridToolsHtml += "<div class=\"framework-specific twb\"><label for=\"gdt-nbcols\">Nb cols</label> <input type=\"text\" id=\"gdt-nbcols\" value=\"" + gdNbcols + "\" /></div>";
+    gridToolsHtml += "<div><label for=\"gdt-zindex\">z-index</label> <input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>";
+    //gridToolsHtml += "    <div>update on blur</div>";
     gridToolsHtml += "  </div>";
     gridToolsHtml += "  <div><a href=\"#\" id=\"gdt-close\">Close</a></div>";
     gridToolsHtml += "</div>";
     
-    $("head").append("<link rel='stylesheet' type='text/css' href='http://lnx3.lyon.novius.fr/gd-bookmarklet.css'>"); //http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/
+    $("head").append("<link rel='stylesheet' type='text/css' href='http://s311709191.onlinehome.fr/perso/gd-bookmarklet.css'>"); //http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/ http://lnx3.lyon.novius.fr/
     $("body").prepend(gridHtml).prepend(gridToolsHtml);  
     $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1); 
     

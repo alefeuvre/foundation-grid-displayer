@@ -15,7 +15,7 @@ $fgd-colour: #333;
   z-index: 0; /* Default value, use body data-grid-zindex to overwrite */
   @include box-sizing(padding-box);
   
-  .row  {
+  #{$row-selector}  {
     height: 100%
   }
   
