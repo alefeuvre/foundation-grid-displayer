@@ -28,7 +28,6 @@
   background-image: -o-linear-gradient(#f6f6f6, #e3e3e3);
   background-image: -ms-linear-gradient(#f6f6f6, #e3e3e3);
   background-image: linear-gradient(#f6f6f6, #e3e3e3);
-  font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   padding: 7px 10px;
   border-bottom: 1px solid #C5C5C5;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 5px 5px;
@@ -39,15 +38,21 @@
 #grid-displayer-tools:hover {
   opacity: 1 !important;
 }
+#grid-displayer-tools > div {
+  float: left;
+}
+#grid-displayer-tools > div:last-child {
+  float: right;
+}
 #grid-displayer-tools select, #grid-displayer-tools input {
   width: auto !important;
   height: auto !important;
   line-height: auto !important;
   margin: 0 !important;
-  color: #777777;
   font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
+  color: #777777;
 }
-#grid-displayer-tools .field {
+#grid-displayer-tools .gdt-field {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   -o-border-radius: 3px;
@@ -55,10 +60,41 @@
   -khtml-border-radius: 3px;
   border-radius: 3px;
   border: 1px solid #FDFDFD;
-  float: left;
-  margin-right: 2em;
 }
-#grid-displayer-tools .field-inside, #grid-displayer-tools select, #grid-displayer-tools #gdt-options div {
+#grid-displayer-tools .gdt-field:first-child {
+  margin-right: 20px;
+}
+#grid-displayer-tools .gdt-button {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #FDFDFD;
+  margin: 0 20px 0 10px;
+}
+#grid-displayer-tools .gdt-button a {
+  text-decoration: none;
+  font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dadada), color-stop(100%, #cacaca));
+  background-image: -webkit-linear-gradient(#dadada, #cacaca);
+  background-image: -moz-linear-gradient(#dadada, #cacaca);
+  background-image: -o-linear-gradient(#dadada, #cacaca);
+  background-image: -ms-linear-gradient(#dadada, #cacaca);
+  background-image: linear-gradient(#dadada, #cacaca);
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  color: #777777;
+  border: 1px solid #BBB;
+  padding: 5px;
+  display: block;
+}
+#grid-displayer-tools .inner-field, #grid-displayer-tools select, #grid-displayer-tools #gdt-options div {
   background: #EAEAEA;
   -moz-box-shadow: rgba(0, 0, 0, 0.075) 0 1px 1px inset;
   -webkit-box-shadow: rgba(0, 0, 0, 0.075) 0 1px 1px inset;
@@ -77,14 +113,15 @@
   border-radius: 3px;
 }
 #grid-displayer-tools label {
+  display: inline-block;
+  margin: 0;
   font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-size: 10px;
   color: #AAA;
-  display: inline-block;
-  padding: 3px 0 0 5px;
-  margin: 0;
+  padding: 0 5px;
 }
 #grid-displayer-tools input {
+  display: inline-block;
   background: transparent;
   border: 0;
   padding: 0 10px 0 0;
@@ -97,6 +134,11 @@
 }
 #grid-displayer-tools #gdt-options div {
   display: inline-block;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 17px;
 }
 #grid-displayer-tools #gdt-options div:first-child {
   -moz-border-radius: 3px 0 0 3px;
@@ -117,9 +159,6 @@
   -khtml-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
-#grid-displayer-tools #gdt-options, #grid-displayer-tools .framework-specific {
+#grid-displayer-tools #gdt-options, #grid-displayer-tools #gdt-ok, #grid-displayer-tools .framework-specific {
   display: none;
-}
-#grid-displayer-tools #gdt-close {
-  float: right;
 }

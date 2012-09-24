@@ -29,7 +29,6 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
   z-index: 999999;
   width: 100%;  
   @include background-image(linear-gradient(#F6F6F6, #E3E3E3));
-  font: $gdt-font;
   padding: 7px 10px;
   border-bottom: 1px solid #C5C5C5;
   @include box-shadow(rgba(0, 0, 0, 0.1) 0 5px 5px);  
@@ -38,23 +37,52 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
     opacity: 1 !important; // Mixin cannot be used here http://stackoverflow.com/questions/7115959/adding-important-using-a-compass-mixin
   }
   
-  select, input { // reset
+  & > div {   
+    float: left;   
+    
+    &:last-child {
+      float: right;
+    }
+  }
+  
+  select, input {
     width: auto !important;
     height: auto !important;
     line-height: auto !important;
     margin: 0 !important;
+    font: $gdt-font !important;    
+    // ^ style reset ^    
     color: $gdt-colour;
-    font: $gdt-font !important;
   }
   
-  .field {
+  .gdt-field {
     @include border-radius(3px);
-    border: 1px solid #FDFDFD;    
-    float: left;
-    margin-right: 2em;  
+    border: 1px solid #FDFDFD; 
+    
+    &:first-child {
+      margin-right: 20px;  
+    }
   }
   
-  .field-inside {  
+  .gdt-button {
+    @include border-radius(3px);
+    border: 1px solid #FDFDFD; 
+    margin: 0 20px 0 10px;   
+    
+    a {
+      text-decoration: none;      
+      font: $gdt-font;
+      
+      @include background-image(linear-gradient(#DADADA, #CACACA));
+      @include border-radius(3px);
+      color: $gdt-colour;
+      border: 1px solid #BBB;
+      padding: 5px;
+      display: block;
+    }
+  }
+  
+  .inner-field {  
     background: #EAEAEA;
     @include box-shadow(rgba(0, 0, 0, 0.075) 0 1px 1px inset);  
     color: $gdt-colour;
@@ -63,22 +91,25 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
   }
   
   select {
-    @extend .field-inside;
+    @extend .inner-field;
     @include border-radius(3px);
   }
   
   label {
+    display: inline-block;
+    margin: 0;    
     font: $gdt-font;
+    // ^ style reset ^    
     font-size: 10px;
     color: #AAA;
-    display: inline-block;
-    padding: 3px 0 0 5px; 
-    margin: 0;
+    padding: 0 5px; 
   }
   
   input {
+    display: inline-block;
     background: transparent;
     border: 0;
+    // ^ style reset ^    
     padding: 0 10px 0 0;
     @include box-shadow(transparent 0 0 0);  
     width: 40px !important;
@@ -86,8 +117,10 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
   }
   
   #gdt-options div {
-    display: inline-block;
-    @extend .field-inside;
+    display: inline-block;    
+    @extend .inner-field;
+    @include box-sizing(border-box);
+    line-height: 17px;
     
     &:first-child {    
       @include border-radius(3px 0 0 3px);
@@ -102,11 +135,7 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
     }
   }
   
-  #gdt-options, .framework-specific {
+  #gdt-options, #gdt-ok, .framework-specific {
     display: none;
-  }
-  
-  #gdt-close {
-    float: right;
   }
 }
