@@ -56,8 +56,7 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
   }
   
   .gdt-field {
-    @include border-radius(3px);
-    border: 1px solid #FDFDFD; 
+    @extend .outer-field;
     
     &:first-child {
       margin-right: 20px;  
@@ -65,8 +64,7 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
   }
   
   .gdt-button {
-    @include border-radius(3px);
-    border: 1px solid #FDFDFD; 
+    @extend .outer-field;
     margin: 0 20px 0 10px;   
     
     a {
@@ -88,6 +86,11 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
     color: $gdt-colour;
     border: 1px solid #C9C9C9;
     padding: 4px;
+  }
+  
+  .outer-field {
+    @include border-radius(3px);
+    border: 1px solid #F5F5F5; 
   }
   
   select {
