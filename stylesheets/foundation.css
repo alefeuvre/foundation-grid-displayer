@@ -37,13 +37,13 @@ table {
 }
 
 body {
-  background: white;
+  background: #f6f4e9;
   font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 13px;
   font-size: 1.3rem;
   -webkit-font-smoothing: antialiased;
   line-height: 18px;
-  color: #555555;
+  color: #222222;
   position: relative;
 }
 

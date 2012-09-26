@@ -117,10 +117,13 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
   }
   
   #gdt-options div {
-    display: inline-block;    
     @extend .inner-field;
     @include box-sizing(border-box);
     line-height: 17px;
+    
+    &:not(.framework-specific) {    
+      display: inline-block;    
+    }
     
     &:first-child {    
       @include border-radius(3px 0 0 3px);

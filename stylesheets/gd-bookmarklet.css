@@ -133,12 +133,14 @@
   text-align: right;
 }
 #grid-displayer-tools #gdt-options div {
-  display: inline-block;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
   line-height: 17px;
+}
+#grid-displayer-tools #gdt-options div:not(.framework-specific) {
+  display: inline-block;
 }
 #grid-displayer-tools #gdt-options div:first-child {
   -moz-border-radius: 3px 0 0 3px;

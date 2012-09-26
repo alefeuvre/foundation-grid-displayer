@@ -11,11 +11,12 @@
 	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width" />
 	
-	<title>Foundation grid displayer</title>
+	<title>Grid displayer bookmarklet for Twitter Bootstrap and Foundation</title>
   
 	<!-- Included CSS Files -->
-	<link rel="stylesheet" href="stylesheets/foundation.css">
-	<link rel="stylesheet" href="stylesheets/app.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/foundation.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/app.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300">
 
 	<!--[if lt IE 9]>
 		<link rel="stylesheet" href="stylesheets/ie.css">
@@ -44,40 +45,40 @@
 
   </script>
 </head>
-<body data-grid-color="blue" data-grid-opacity="0.5" data-grid-zindex="10">
+<body data-grid-framework="f2" data-grid-color="red" data-grid-opacity="0.5" data-grid-zindex="10">
 
 	<div class="container">
 
 		<header class="row">
 			<div class="ten columns">
-				<h1>Foundation grid displayer</h2>
-				<p><a href="http://www.zurb.com/article/923/in-browser-prototyping-or-how-we-rapidly-">In-browser prototyping</a> made even easier with this bookmarklet which displays ZURB Foundation's grid.</p>
+				<h1>Grid displayer</h1>
+        <h2>for TW Bootstrap and Foundation</h2>
+				<p>In-browser web design made easier with this bookmarklet which displays the grid of your favourite front-end framework.</p>
 			</div>
       <div class="two columns">
         <ul>      
-					<li><a href="https://twitter.com/intent/tweet?text=In-browser%20prototyping%20made%20even%20easier%20with%20this%20bookmarklet%20which%20displays%20ZURB%20Foundation%27s%20grid&url=http://alefeuvre.github.com/foundation-grid-displayer/&via=jiraisurfer" class="nice small white button">Tweet me</a></li>
-          <li><a href="http://github.com/alefeuvre/foundation-grid-displayer/" class="nice small white button">Fork me</a></li>
+					<li><a href="https://twitter.com/intent/tweet?text=In-browser%20prototyping%20made%20even%20easier%20with%20this%20bookmarklet%20which%20displays%20ZURB%20Foundation%27s%20grid&url=http://alefeuvre.github.com/foundation-grid-displayer/&via=jiraisurfer" class="small shine button">Tweet me</a></li>
+          <li><a href="http://github.com/alefeuvre/foundation-grid-displayer/" class="small shine button">Fork me</a></li>
         </ul>
       </div>
 		</header>
 
 		<div class="row">
 			<div class="four columns">
-				<h2>Install</h2>
+				<h2><span class="shine">1</span> Install it</h2>
         <p class="hide-on-phones">For Firefox and WebKit browsers only.</p>
         <p class="show-on-phones">Sorry, for tablets and computers only.</p>
       </div>
 			<div class="eight columns">
-				<h2>Examples</h2>
-        <p class="hide-on-phones">Install the bookmarklet and try it on these Foundation-powered sites:</p>
+				<h2><span class="shine">2</span> Try it</h2>
+        <p class="hide-on-phones">Try the bookmarklet <strong>on this page</strong> or on the following sites:</p>
       </div>
     </div>
     <div class="row">
-      <div class="four columns">
-        <p style="font-weight: bold;">Drag one of these two buttons to your bookmarks:</p>
-        <p><a href='javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"http://alefeuvre.github.com/foundation-grid-displayer/bookmarklet.js";%20%20%20head.appendChild(bklScript);%20})();' onclick="return dontclick();" class="nice blue button hide-on-phones" title="Foundation 2 grid displayer">Foundation 2 grid displayer</a></p>
-        <p><a href='javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"http://alefeuvre.github.com/foundation-grid-displayer/bookmarklet-3.js";%20%20%20head.appendChild(bklScript);%20})();' onclick="return dontclick();" class="nice blue button hide-on-phones" title="Foundation 3 grid displayer">Foundation 3 grid displayer</a></p>
-        <p class="hide-on-phones">Right after adding the bookmarklet, try it on this page (Foundation 2) or on the examples &rarr;</p>
+      <div class="four columns hide-on-phones">
+        <p style="font-weight: bold; text-align: center;">&darr; Drag this button to your bookmarks bar &darr;</p>
+        <p><a href='javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"http://alefeuvre.github.com/foundation-grid-displayer/gd-bookmarklet.js";%20%20%20head.appendChild(bklScript);%20})();' onclick="return dontclick();" class="large shine button" title="Grid displayer bookmarklet for Twitter Bootstrap and Foundation">Grid displayer</a></p>                
+        <p style="font-weight: bold; text-align: center;">&uarr; Come one, drag it! &uarr;</p>
       </div>
       <div class="four columns">
         <p><a href="http://foundation.zurb.com/about.php" target="_blank"><img src="images/example1.png"></a></p>
@@ -91,10 +92,11 @@
     
     <div class="row">
       <div class="twelve columns">
-        <h2>Custom default parameters</h2>        
-        <p>If your site features a black background or you always want the grid displayer on top, you'll grow tired of editing the parameters every time the page or the displayer is reloaded. Set them once and for all, add these data attributes to the body:</p>
-        <script type="text/javascript" src="http://snipt.net/embed/dfa99649ec014f04edda74261dbd3457/"></script>        
-        <p style="margin-top: 1em;">Note: "With container" is automatically ticked whenever a element with the class "container" is detected.</p>
+        <h2><span class="shine">3</span> Use it regularly</h2>        
+        <p>You'll probably grow tired of editing the parameters every time the page or the displayer is reloaded. Set them once and for all, add these data attributes to the body:</p>
+        <p><script type="text/javascript" src="http://snipt.net/embed/dfa99649ec014f04edda74261dbd3457/"></script></p>        
+        <p>Framework codes: <strong>bo</strong> (Bootstrap, fixed grid), <strong>bf</strong> (Bootstrap, fluid grid), <strong>f3</strong> (Foundation 3.0), <strong>f2</strong> (Foundation 2.0).</p>
+        <p>Note: 'Nb cols' paramater for Bootstrap only.</p>
       </div>
     </div>
     
@@ -102,9 +104,9 @@
 			<div class="twelve columns">
         <h2>About</h2>        
 				<ul class="disc">
-					<li><a href="http://foundation.zurb.com">Foundation</a> is a rapid prototyping framework by ZURB.</li>
+					<li><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> and <a href="http://foundation.zurb.com">Foundation</a> are two popular front-end frameworks.</li>
 					<li>This bookmarklet was created by <a href="http://twitter.com/jiraisurfer">Antoine Lefeuvre</a>.</li>
-					<li>Both Foundation and this bookmarklet are under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</li>
+					<li>This bookmarklet is released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</li>
 				</ul>
 			</div>
 		</div>

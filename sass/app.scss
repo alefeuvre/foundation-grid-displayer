@@ -1,7 +1,38 @@
+$shine: #C70808; // Palette http://www.colourlovers.com/palette/79468/LipstickOnHisCollar
+$subtle: #EEE9DE;
+
+h1, h2 {
+  font-family: 'Lato', sans-serif;
+  
+  .shine {
+    display: inline-block;
+    padding: 0 0.2em;
+  }
+}
+
+.shine {
+  background-color: $shine;
+  color: #F6F4E9;
+  
+  &.large {
+    display: block;
+    padding: 1.5em 0;
+  }
+}
+
+a {
+  color: $shine;
+  
+  &:hover, &:focus {
+    color: $shine !important;
+    background-color: $subtle !important;
+  }
+}
+
 header {
   margin-top: 2rem !important;
   margin-bottom: 2rem !important;
-  border-bottom: 1px solid #DDD;
+  border-bottom: 15px solid $subtle;
     
   a.button {
     display: block;
@@ -22,5 +53,5 @@ header {
 
 footer {
   margin-top: 2rem !important;
-  border-top: 1px solid #DDD;
+  border-top: 15px solid $subtle;
 }

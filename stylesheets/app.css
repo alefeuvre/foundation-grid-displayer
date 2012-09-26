@@ -1,7 +1,32 @@
+h1, h2 {
+  font-family: 'Lato', sans-serif;
+}
+h1 .shine, h2 .shine {
+  display: inline-block;
+  padding: 0 0.2em;
+}
+
+.shine {
+  background-color: #c70808;
+  color: #F6F4E9;
+}
+.shine.large {
+  display: block;
+  padding: 1.5em 0;
+}
+
+a {
+  color: #c70808;
+}
+a:hover, a:focus {
+  color: #c70808 !important;
+  background-color: #eee9de !important;
+}
+
 header {
   margin-top: 2rem !important;
   margin-bottom: 2rem !important;
-  border-bottom: 1px solid #DDD;
+  border-bottom: 15px solid #eee9de;
 }
 header a.button {
   display: block;
@@ -23,5 +48,5 @@ header a.button {
 
 footer {
   margin-top: 2rem !important;
-  border-top: 1px solid #DDD;
+  border-top: 15px solid #eee9de;
 }
