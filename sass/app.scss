@@ -20,6 +20,11 @@ h1, h2 {
   }
 }
 
+.subtle {
+  background-color: $subtle;
+  color: #222;
+}
+
 a {
   color: $shine;
   

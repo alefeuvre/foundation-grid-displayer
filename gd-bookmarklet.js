@@ -21,7 +21,7 @@ if (typeof jQuery === "undefined") {
     if (gdIsBuilt) {
       $gdContainer.removeClass().addClass("gd-container");
       $gdRow.removeClass().addClass("gd-row").css("border-right", 0).empty();
-      $("#grid-displayer-tools .framework-specific").hide();
+      $gdTools.find(".framework-specific").hide();
     }
     
     for(var i = 0; i < gridNbcols; i++) {
@@ -36,14 +36,14 @@ if (typeof jQuery === "undefined") {
         $gdContainer.addClass("container");
         $gdRow.addClass("row");
         $gdColumn.addClass("span1");
-        $gdTools.find(".twb").show();
+        $gdTools.find(".twb").css("display", "inline-block");
       break;
       
       case 'bf':      
         $gdContainer.addClass("container-fluid");
         $gdRow.addClass("row-fluid");
         $gdColumn.addClass("span1");
-        $gdTools.find(".twb").show();
+        $gdTools.find(".twb").css("display", "inline-block");
       break;
       
       case 'f3':      
@@ -62,8 +62,8 @@ if (typeof jQuery === "undefined") {
     setGridOpacity($gdTools.find("#gdt-opacity").val(), hasBorder);
     
     if (!gdIsBuilt) {
-      $gdTools.find("#gdt-options").show();
-      $gdTools.find("#gdt-ok").show();
+      $gdTools.find("#gdt-options").css("display", "block"); // as the CSS is loaded after the JS, show() is overwritten by display: none
+      $gdTools.find("#gdt-ok").css("display", "block");
       setGridZindex($gdTools.find("#gdt-zindex").val());
       $("#grid-displayer").show();
       gdIsBuilt = true;
@@ -116,7 +116,6 @@ if (typeof jQuery === "undefined") {
                   "f3": "Foundation 3",
                   "f2": "Foundation 2" },
     gridToolsHtml = "<div id=\"grid-displayer-tools\">";
-    //gridToolsHtml += "  <div>Grid displayer</div>";
     gridToolsHtml += "  <div class=\"gdt-field\"><select id=\"gdt-framework\">";
     gridToolsHtml += "    <option>Choose your framework</option>";
     $.each(frameworks, function(key, value) {     
