@@ -1,6 +1,7 @@
-# Foundation grid displayer
+# Grid displayer for Twitter Bootstrap and Foundation
 
-* In-browser prototyping made even easier with this bookmarklet which displays ZURB Foundation's grid.
+* In-browser web design made easier with this bookmarklet which displays the grid of Twitter Bootstrap and Foundation.
 * Install it at http://alefeuvre.github.com/foundation-grid-displayer/
-* Two versions: for Foundation 2 and 3.
-* Both Foundation and this bookmarklet are under the MIT license.
+* Compatible with Twitter Bootstrap (fixed and fluid grid), Foundation 2.0 and 3.0.
+* This bookmarklet was created by [Antoine Lefeuvre](http://twitter.com/jiraisurfer).
+* This bookmarklet is released under the MIT license.
