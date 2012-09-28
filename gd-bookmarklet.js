@@ -117,12 +117,13 @@ if (typeof jQuery === "undefined") {
                   "f2": "Foundation 2" },
     gridToolsHtml = "<div id=\"grid-displayer-tools\">";
     gridToolsHtml += "  <div class=\"gdt-field\"><select id=\"gdt-framework\">";
-    gridToolsHtml += "    <option>Choose your framework</option>";
+    gridToolsHtml += "    <option>&darr; Choose your framework</option>";
     $.each(frameworks, function(key, value) {     
       gridToolsHtml += "<option value=\"" + key + "\"";
       gridToolsHtml += (key == gdFramework) ? " selected" : "";
       gridToolsHtml += ">" + value + "</option>";
     });
+    gridToolsHtml += "    <option value=\"tired\">I'm tired of choosing my framework</option>";
     gridToolsHtml += "  </select></div>";
     gridToolsHtml += "  <div id=\"gdt-options\" class=\"gdt-field\">";
     gridToolsHtml += "    <div><label for=\"gdt-color\">Columns colour</label><input type=\"text\" id=\"gdt-color\" value=\"" + gdColor + "\" /></div>";
@@ -144,11 +145,15 @@ if (typeof jQuery === "undefined") {
     
     // Actions
     $("#grid-displayer-tools #gdt-framework").change(function() {
-      gdFramework = $(this).val();
-      if (gdFramework == "f3" || gdFramework == "f2") {
-        $("#grid-displayer-tools #gdt-nbcols").val(12);
+      if ($(this).val() == "tired") {
+        window.open("http://snipt.net/jiraisurfer/custom-parameters-for-foundation-grid-displayer/");
+      } else {
+        gdFramework = $(this).val();
+        if (gdFramework == "f3" || gdFramework == "f2") {
+          $("#grid-displayer-tools #gdt-nbcols").val(12);
+        }
+        buildGridDisplayer(gdFramework);
       }
-      buildGridDisplayer(gdFramework);
     });    
     $("#grid-displayer-tools #gdt-nbcols").change(function() {
       buildGridDisplayer(gdFramework);

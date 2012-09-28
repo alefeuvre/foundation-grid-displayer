@@ -17,6 +17,7 @@
 }
 
 #grid-displayer-tools {
+  line-height: 18px !important;
   position: fixed;
   top: 0;
   left: 0;
@@ -52,26 +53,10 @@
   font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
   color: #777777;
 }
-#grid-displayer-tools .gdt-field {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  border: 1px solid #FDFDFD;
-}
 #grid-displayer-tools .gdt-field:first-child {
   margin-right: 20px;
 }
 #grid-displayer-tools .gdt-button {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -o-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-  border: 1px solid #FDFDFD;
   margin: 0 20px 0 10px;
 }
 #grid-displayer-tools .gdt-button a {
@@ -103,6 +88,15 @@
   color: #777777;
   border: 1px solid #C9C9C9;
   padding: 4px;
+}
+#grid-displayer-tools .outer-field, #grid-displayer-tools .gdt-field, #grid-displayer-tools .gdt-button {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #F5F5F5;
 }
 #grid-displayer-tools select {
   -moz-border-radius: 3px;

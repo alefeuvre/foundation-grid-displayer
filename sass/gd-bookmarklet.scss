@@ -22,7 +22,9 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
   }
 }
 
-#grid-displayer-tools {
+#grid-displayer-tools {  
+  line-height: 18px !important;
+  // ^ style reset ^    
   position: fixed;
   top: 0;
   left: 0;

@@ -1,7 +1,12 @@
 $shine: #C70808; // Palette http://www.colourlovers.com/palette/79468/LipstickOnHisCollar
 $subtle: #EEE9DE;
 
-h1, h2 {
+h1 {
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 0;
+}
+
+h2 {
   font-family: 'Lato', sans-serif;
   
   .shine {
