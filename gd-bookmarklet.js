@@ -135,7 +135,7 @@ if (typeof jQuery === "undefined") {
     gridToolsHtml += "  <div class=\"gdt-button\"><a href=\"#\" id=\"gdt-close\">Close</a></div>";
     gridToolsHtml += "</div>";
     
-    $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/gd-bookmarklet.css'>");
+    $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/gd-bookmarklet.min.css'>");
     $("body").prepend(gridHtml).prepend(gridToolsHtml);  
     $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1); 
     
