@@ -45,9 +45,15 @@
           $gdTools.find(".twb").css("display", "inline-block");
         break;
         
+        case 'f4':      
+          $gdRow.addClass("row");
+          $gdColumn.addClass("large-1 columns").filter(":odd").addClass("dontshow"); // 0-based indexing means that, counter-intuitively, :odd selects the 2th element, 4th element, ...    
+          hasBorder = true;
+        break;
+        
         case 'f3':      
           $gdRow.addClass("row");
-          $gdColumn.addClass("one columns").filter(":odd").addClass("dontshow"); // 0-based indexing means that, counter-intuitively, :odd selects the 2th element, 4th element, ...    
+          $gdColumn.addClass("one columns").filter(":odd").addClass("dontshow");
           hasBorder = true;
         break;
         
@@ -85,7 +91,7 @@
     setGridZindex = function(gridZindex) {  
       $("#grid-displayer").css("z-index", gridZindex);
     },
-    setBorderStyle = function() { // for Foundation 3 only. If only border-opacity existed...
+    setBorderStyle = function() { // for Foundation 3+ only. If only border-opacity existed...
       var currentOpacity = $("#grid-displayer .gd-column:first-child").css("opacity"),
           rgbaColor = $("#grid-displayer .gd-column:first-child").css("background-color").replace('rgb', 'rgba').replace(')',', ' + currentOpacity + ')'); // I'm not proud of this. If you have a nicer solution, your pull request is very welcome.
       $("#grid-displayer .gd-row").css("border-right", "2px solid " + rgbaColor);
@@ -112,27 +118,28 @@
       var gridHtml = "<div id=\"grid-displayer\" style=\"display: none;\"><div class=\"gd-container\"><div class=\"gd-row\"></div></div></div>",
       frameworks = {"bo": "Bootstrap",
                     "bf": "Bootstrap (fluid)",
+                    "f4": "Foundation 4",
                     "f3": "Foundation 3",
                     "f2": "Foundation 2" },
-      gridToolsHtml = "<div id=\"grid-displayer-tools\">";
-      gridToolsHtml += "  <div class=\"gdt-field\"><select id=\"gdt-framework\">";
-      gridToolsHtml += "    <option>&darr; Choose your framework</option>";
+      gridToolsHtml = "<div id=\"grid-displayer-tools\">"
+                    + "  <div class=\"gdt-field\"><select id=\"gdt-framework\">"
+                    + "    <option>&darr; Choose your framework</option>";
       $.each(frameworks, function(key, value) {     
-        gridToolsHtml += "<option value=\"" + key + "\"";
-        gridToolsHtml += (key == gdFramework) ? " selected" : "";
-        gridToolsHtml += ">" + value + "</option>";
+        gridToolsHtml += "<option value=\"" + key + "\""
+                       + (key == gdFramework) ? " selected" : ""
+                       + ">" + value + "</option>";
       });
       gridToolsHtml += "    <option value=\"tired\">I'm tired of choosing my framework</option>";
-      gridToolsHtml += "  </select></div>";
-      gridToolsHtml += "  <div id=\"gdt-options\" class=\"gdt-field\">";
-      gridToolsHtml += "    <div><label for=\"gdt-color\">Columns colour</label><input type=\"text\" id=\"gdt-color\" value=\"" + gdColor + "\" /></div>";
-      gridToolsHtml +=     "<div><label for=\"gdt-opacity\">Opacity</label><input type=\"text\" id=\"gdt-opacity\" value=\"" + gdOpacity + "\" /></div>";
-      gridToolsHtml +=     "<div class=\"framework-specific twb\"><label for=\"gdt-nbcols\">Nb cols</label><input type=\"text\" id=\"gdt-nbcols\" value=\"" + gdNbcols + "\" /></div>";
-      gridToolsHtml +=     "<div><label for=\"gdt-zindex\">z-index</label><input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>";
-      gridToolsHtml += "  </div>";
-      gridToolsHtml += "  <div class=\"gdt-button\" id=\"gdt-ok\"><a href=\"#\">OK</a></div>";
-      gridToolsHtml += "  <div class=\"gdt-button\"><a href=\"#\" id=\"gdt-close\">Close</a></div>";
-      gridToolsHtml += "</div>";
+                    + "  </select></div>"
+                    + "  <div id=\"gdt-options\" class=\"gdt-field\">"
+                    + "    <div><label for=\"gdt-color\">Columns colour</label><input type=\"text\" id=\"gdt-color\" value=\"" + gdColor + "\" /></div>"
+                    +     "<div><label for=\"gdt-opacity\">Opacity</label><input type=\"text\" id=\"gdt-opacity\" value=\"" + gdOpacity + "\" /></div>"
+                    +     "<div class=\"framework-specific twb\"><label for=\"gdt-nbcols\">Nb cols</label><input type=\"text\" id=\"gdt-nbcols\" value=\"" + gdNbcols + "\" /></div>"
+                    +     "<div><label for=\"gdt-zindex\">z-index</label><input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>"
+                    + "  </div>"
+                    + "  <div class=\"gdt-button\" id=\"gdt-ok\"><a href=\"#\">OK</a></div>"
+                    + "  <div class=\"gdt-button\"><a href=\"#\" id=\"gdt-close\">Close</a></div>"
+                    + "</div>";
       
       $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/gd-bookmarklet.min.css'>");
       $("body").prepend(gridHtml).prepend(gridToolsHtml);  
@@ -148,7 +155,7 @@
           window.open("http://snipt.net/jiraisurfer/custom-parameters-for-foundation-grid-displayer/");
         } else {
           gdFramework = $(this).val();
-          if (gdFramework == "f3" || gdFramework == "f2") {
+          if (gdFramework == "f4" || gdFramework == "f3" || gdFramework == "f2") { // Reset to 12 cols when switching from Bootstrap to Foundation, in case nb cols has been changed
             $("#grid-displayer-tools #gdt-nbcols").val(12);
           }
           buildGridDisplayer(gdFramework);
@@ -158,10 +165,10 @@
         buildGridDisplayer(gdFramework);
       });    
       $("#grid-displayer-tools #gdt-color").change(function() {
-        setGridColor($(this).val(), gdFramework == "f3");
+        setGridColor($(this).val(), gdFramework == "f4" || gdFramework == "f3");
       });    
       $("#grid-displayer-tools #gdt-opacity").change(function() {
-        setGridOpacity($(this).val(), gdFramework == "f3");
+        setGridOpacity($(this).val(), gdFramework == "f4" || gdFramework == "f3");
       });    
       $("#grid-displayer-tools #gdt-zindex").change(function() {
         setGridZindex($(this).val());
@@ -184,4 +191,40 @@
   } else {    
     startBookmarklet(window.jQuery);
   }
+  
+  /**
+   * Google Analytics JS v1
+   * http://code.google.com/p/google-analytics-js/
+   * Copyright (c) 2009 Remy Sharp remysharp.com / MIT License
+   * $Date: 2009-02-25 14:25:01 +0000 (Wed, 25 Feb 2009) $
+   */
+  (function(urchinCode, domain, url) {
+      
+    function rand(min, max) {
+        return min + Math.floor(Math.random() * (max - min));
+    }
+      
+    var i=1000000000,
+        utmn=rand(i,9999999999), //random request number
+        cookie=rand(10000000,99999999), //random cookie number
+        random=rand(i,2147483647), //number under 2147483647
+        today=(new Date()).getTime(),
+        win = window.location,
+        img = new Image(),
+        urchinUrl = 'http://www.google-analytics.com/__utm.gif?utmwv=1.3&utmn='
+            +utmn+'&utmsr=-&utmsc=-&utmul=-&utmje=0&utmfl=-&utmdt=-&utmhn='
+            +domain+'&utmr='+win+'&utmp='
+            +url+'&utmac='
+            +urchinCode+'&utmcc=__utma%3D'
+            +cookie+'.'+random+'.'+today+'.'+today+'.'
+            +today+'.2%3B%2B__utmb%3D'
+            +cookie+'%3B%2B__utmc%3D'
+            +cookie+'%3B%2B__utmz%3D'
+            +cookie+'.'+today
+            +'.2.2.utmccn%3D(referral)%7Cutmcsr%3D' + win.host + '%7Cutmcct%3D' + win.pathname + '%7Cutmcmd%3Dreferral%3B%2B__utmv%3D'
+            +cookie+'.-%3B';
+
+    // trigger the tracking
+    img.src = urchinUrl;
+  })("UA-30567117-1","alefeuvre.github.io","gd-bookmarklet.js");
 })();
