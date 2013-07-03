@@ -125,11 +125,11 @@
                     + "  <div class=\"gdt-field\"><select id=\"gdt-framework\">"
                     + "    <option>&darr; Choose your framework</option>";
       $.each(frameworks, function(key, value) {     
-        gridToolsHtml += "<option value=\"" + key + "\""
-                       + (key == gdFramework) ? " selected" : ""
-                       + ">" + value + "</option>";
+        gridToolsHtml += "<option value=\"" + key + "\"";
+        gridToolsHtml += (key == gdFramework) ? " selected" : "";
+        gridToolsHtml += ">" + value + "</option>";
       });
-      gridToolsHtml += "    <option value=\"tired\">I'm tired of choosing my framework</option>";
+      gridToolsHtml += "    <option value=\"tired\">I'm tired of choosing my framework</option>"
                     + "  </select></div>"
                     + "  <div id=\"gdt-options\" class=\"gdt-field\">"
                     + "    <div><label for=\"gdt-color\">Columns colour</label><input type=\"text\" id=\"gdt-color\" value=\"" + gdColor + "\" /></div>"
