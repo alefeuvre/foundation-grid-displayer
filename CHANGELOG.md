@@ -11,3 +11,7 @@
 * Enhancement: Foundation 4.0 supported ([issue #3](https://github.com/alefeuvre/foundation-grid-displayer/issues/3))
 * Enhancement: jQuery loaded from CDN when necessary ([issue #1](https://github.com/alefeuvre/foundation-grid-displayer/issues/1))
 * Bugfix: Wordpress compatibility ([issue #4](https://github.com/alefeuvre/foundation-grid-displayer/issues/4))
+
+## Version 2.2 - July 31, 2013
+* Enhancement: Bootstrap 3.0 support ([PR #7](https://github.com/alefeuvre/foundation-grid-displayer/pull/7) thanks @thorsten)
+* Bugfix: Outside borders for gutterless grids (F3+, B3)

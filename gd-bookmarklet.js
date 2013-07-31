@@ -30,7 +30,16 @@
       var $gdColumn = $gdRow.find(".gd-column"),
       hasBorder = false;
         
-      switch(gridFramework) {
+      switch(gridFramework) {	
+
+        case 'b3':
+          $gdContainer.addClass("container");
+          $gdRow.addClass("row");
+          $gdColumn.addClass("col-lg-1").filter(":odd").addClass("dontshow"); // 0-based indexing means that, counter-intuitively, :odd selects the 2th element, 4th element, ...    
+          hasBorder = true;
+          $gdTools.find(".twb").css("display", "inline-block");
+        break;
+
         case 'bo':
           $gdContainer.addClass("container");
           $gdRow.addClass("row");
@@ -42,13 +51,6 @@
           $gdContainer.addClass("container-fluid");
           $gdRow.addClass("row-fluid");
           $gdColumn.addClass("span1");
-          $gdTools.find(".twb").css("display", "inline-block");
-        break;
-
-        case 'b3':
-          $gdContainer.addClass("container-fluid");
-          $gdRow.addClass("row");
-          $gdColumn.addClass("col-1 col-sm-1 col-lg-1");
           $gdTools.find(".twb").css("display", "inline-block");
         break;
         
@@ -98,10 +100,10 @@
     setGridZindex = function(gridZindex) {  
       $("#grid-displayer").css("z-index", gridZindex);
     },
-    setBorderStyle = function() { // for Foundation 3+ only. If only border-opacity existed...
-      var currentOpacity = $("#grid-displayer .gd-column:first-child").css("opacity"),
-          rgbaColor = $("#grid-displayer .gd-column:first-child").css("background-color").replace('rgb', 'rgba').replace(')',', ' + currentOpacity + ')'); // I'm not proud of this. If you have a nicer solution, your pull request is very welcome.
-      $("#grid-displayer .gd-row").css("border-right", "2px solid " + rgbaColor);
+    setBorderStyle = function() { // If only outline-opacity existed...
+      var outlineOpacity = parseFloat($("#grid-displayer .gd-column:first-child").css("opacity")) + 0.5,
+          rgbaColor = $("#grid-displayer .gd-column:first-child").css("background-color").replace('rgb', 'rgba').replace(')',', ' + outlineOpacity + ')'); // I'm not proud of this. If you have a nicer solution, your pull request is very welcome.
+      $("#grid-displayer .gd-row").css("outline", "2px solid " + rgbaColor);
     };
     
     if ($("#grid-displayer").length) { // Close grid displayer when the bookmarklet is clicked for a second time
@@ -119,13 +121,13 @@
       gdNbcols              = (typeof dataGridNbcols === "undefined") ?    "12" : dataGridNbcols,
       gdColor               = (typeof dataGridColor === "undefined") ?     "black" : dataGridColor,
       gdOpacity             = (typeof dataGridOpacity === "undefined") ?   "0.3" : dataGridOpacity,
-      gdZindex              = (typeof dataGridZindex === "undefined") ?    "0" : dataGridZindex;
+      gdZindex              = (typeof dataGridZindex === "undefined") ?    "999" : dataGridZindex;
       
       // HTML
       var gridHtml = "<div id=\"grid-displayer\" style=\"display: none;\"><div class=\"gd-container\"><div class=\"gd-row\"></div></div></div>",
-      frameworks = {"bo": "Bootstrap v2",
-                    "bf": "Bootstrap v2 (fluid)",
-                    "b3": "Bootstrap v3",
+      frameworks = {"b3": "Bootstrap 3",
+					"bo": "Bootstrap 2",
+                    "bf": "Bootstrap 2 (fluid)",
                     "f4": "Foundation 4",
                     "f3": "Foundation 3",
                     "f2": "Foundation 2" },
@@ -163,6 +165,7 @@
           window.open("http://snipt.net/jiraisurfer/custom-parameters-for-foundation-grid-displayer/");
         } else {
           gdFramework = $(this).val();
+          gdHasBorder = (gdFramework == "b3" || gdFramework == "f4" || gdFramework == "f3") ? true : false;
           if (gdFramework == "f4" || gdFramework == "f3" || gdFramework == "f2") { // Reset to 12 cols when switching from Bootstrap to Foundation, in case nb cols has been changed
             $("#grid-displayer-tools #gdt-nbcols").val(12);
           }
@@ -173,10 +176,10 @@
         buildGridDisplayer(gdFramework);
       });    
       $("#grid-displayer-tools #gdt-color").change(function() {
-        setGridColor($(this).val(), gdFramework == "f4" || gdFramework == "f3");
+        setGridColor($(this).val(), gdHasBorder);
       });    
       $("#grid-displayer-tools #gdt-opacity").change(function() {
-        setGridOpacity($(this).val(), gdFramework == "f4" || gdFramework == "f3");
+        setGridOpacity($(this).val(), gdHasBorder);
       });    
       $("#grid-displayer-tools #gdt-zindex").change(function() {
         setGridZindex($(this).val());
