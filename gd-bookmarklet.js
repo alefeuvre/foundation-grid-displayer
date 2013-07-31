@@ -125,10 +125,10 @@
       
       // HTML
       var gridHtml = "<div id=\"grid-displayer\" style=\"display: none;\"><div class=\"gd-container\"><div class=\"gd-row\"></div></div></div>",
-      frameworks = {"b3": "Bootstrap 3",
-					"bo": "Bootstrap 2",
+      frameworks = {"b3": "NEW Bootstrap 3",
+                    "bo": "Bootstrap 2",
                     "bf": "Bootstrap 2 (fluid)",
-                    "f4": "Foundation 4",
+                    "f4": "NEW Foundation 4",
                     "f3": "Foundation 3",
                     "f2": "Foundation 2" },
       gridToolsHtml = "<div id=\"grid-displayer-tools\">"
