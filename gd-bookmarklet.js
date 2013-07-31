@@ -44,6 +44,13 @@
           $gdColumn.addClass("span1");
           $gdTools.find(".twb").css("display", "inline-block");
         break;
+
+        case 'b3':
+          $gdContainer.addClass("container-fluid");
+          $gdRow.addClass("row");
+          $gdColumn.addClass("col-1 col-sm-1 col-lg-1");
+          $gdTools.find(".twb").css("display", "inline-block");
+        break;
         
         case 'f4':      
           $gdRow.addClass("row");
@@ -116,8 +123,9 @@
       
       // HTML
       var gridHtml = "<div id=\"grid-displayer\" style=\"display: none;\"><div class=\"gd-container\"><div class=\"gd-row\"></div></div></div>",
-      frameworks = {"bo": "Bootstrap",
-                    "bf": "Bootstrap (fluid)",
+      frameworks = {"bo": "Bootstrap v2",
+                    "bf": "Bootstrap v2 (fluid)",
+                    "b3": "Bootstrap v3",
                     "f4": "Foundation 4",
                     "f3": "Foundation 3",
                     "f2": "Foundation 2" },
