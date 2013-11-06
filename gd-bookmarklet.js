@@ -48,7 +48,9 @@ if (typeof jQuery === "undefined") {
       
       case 'f3':      
         $gdRow.addClass("row");
-        $gdColumn.addClass("one columns").filter(":odd").addClass("dontshow"); // 0-based indexing means that, counter-intuitively, :odd selects the 2th element, 4th element, ...    
+        // 0-based indexing means that, counter-intuitively, :odd selects the 2th element, 4th element, ...
+		  // $gdColumn.addClass("one columns").filter(":odd").addClass("dontshow");     
+        $gdColumn.addClass("one columns");
         hasBorder = true;
       break;
       
@@ -72,13 +74,15 @@ if (typeof jQuery === "undefined") {
   
   // Setters
   setGridColor = function(gridColor, hasBorder) {  
-    $("#grid-displayer .gd-column:not(.dontshow)").css("background-color", gridColor);
+    // $("#grid-displayer .gd-column:not(.dontshow)").css("background-color", gridColor);
+    $("#grid-displayer .gd-column").css({"background-color": gridColor, "border-left": "10px solid #fff", "border-right": "10px solid #fff");
     if (hasBorder) {
       setBorderStyle();
     }
   },
   setGridOpacity = function(gridOpacity, hasBorder) {  
-    $("#grid-displayer .gd-column:not(.dontshow)").css("opacity", gridOpacity);
+    // $("#grid-displayer .gd-column:not(.dontshow)").css("opacity", gridOpacity);
+    $("#grid-displayer .gd-column").css("opacity", gridOpacity);
     if (hasBorder) {
       setBorderStyle();
     }
@@ -135,7 +139,7 @@ if (typeof jQuery === "undefined") {
     gridToolsHtml += "  <div class=\"gdt-button\"><a href=\"#\" id=\"gdt-close\">Close</a></div>";
     gridToolsHtml += "</div>";
     
-    $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/gd-bookmarklet.min.css'>");
+    $("head").append("<link rel='stylesheet' type='text/css' href='http://jayverb.github.io/foundation-grid-displayer/stylesheets/gd-bookmarklet.min.css'>");
     $("body").prepend(gridHtml).prepend(gridToolsHtml);  
     $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1); 
     
