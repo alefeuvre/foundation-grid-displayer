@@ -89,7 +89,7 @@
     // Setters
     setGridColor = function(gridColor, hasBorder) {  
       // $("#grid-displayer .gd-column:not(.dontshow)").css("background-color", gridColor);
-      $("#grid-displayer .gd-column").css({"background-color": gridColor, "border-left": "15px solid #fff", "border-right": "15px solid #fff"});
+      $("#grid-displayer .gd-column").css({"background-color": gridColor, "border-left": "10px solid #fff", "border-right": "10px solid #fff"});
       if (hasBorder) {
         setBorderStyle();
       }
