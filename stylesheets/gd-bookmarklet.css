@@ -8,6 +8,7 @@
   -webkit-box-sizing: padding-box;
   -ms-box-sizing: padding-box;
   box-sizing: padding-box;
+  pointer-events: none;
 }
 #grid-displayer .gd-container, #grid-displayer .gd-row {
   height: 100%;
