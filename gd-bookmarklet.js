@@ -155,7 +155,7 @@
                     + "  <div class=\"gdt-button\"><a href=\"#\" id=\"gdt-close\">Close</a></div>"
                     + "</div>";
       
-      $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/gd-bookmarklet.min.css'>");
+      $("head").append("<link rel='stylesheet' type='text/css' href='http://jayverb.github.io/foundation-grid-displayer/stylesheets/gd-bookmarklet.css'>");
       $("body").prepend(gridHtml).prepend(gridToolsHtml);  
       $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1); 
       
