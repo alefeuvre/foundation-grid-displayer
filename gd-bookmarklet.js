@@ -89,7 +89,7 @@
     // Setters
     setGridColor = function(gridColor, hasBorder) {  
       // $("#grid-displayer .gd-column:not(.dontshow)").css("background-color", gridColor);
-      $("#grid-displayer .gd-column").css({"background-color": gridColor, "border-left": "15px solid #fff", "border-right": "15px solid #fff"});
+      $("#grid-displayer .gd-column").css({"background-color": gridColor, "border-left": "15px solid #fff", "border-right": "15px solid #fff","padding": "0"});
       if (hasBorder) {
         setBorderStyle();
       }
@@ -107,7 +107,7 @@
     setBorderStyle = function() { // If only outline-opacity existed...
       var outlineOpacity = parseFloat($("#grid-displayer .gd-column:first-child").css("opacity")) + 0.5,
           rgbaColor = $("#grid-displayer .gd-column:first-child").css("background-color").replace('rgb', 'rgba').replace(')',', ' + outlineOpacity + ')'); // I'm not proud of this. If you have a nicer solution, your pull request is very welcome.
-      $("#grid-displayer .gd-row").css("outline", "2px solid " + rgbaColor);
+      $("#grid-displayer .gd-row").css("outline", "1px solid " + rgbaColor);
     };
     
     if ($("#grid-displayer").length) { // Close grid displayer when the bookmarklet is clicked for a second time
