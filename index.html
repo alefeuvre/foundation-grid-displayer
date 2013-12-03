@@ -1,23 +1,121 @@
 <!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
+	
+	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width" />
-	<title>Grid displayer bookmarklet for Twitter Bootstrap</title>
+	
+	<title>Grid displayer bookmarklet for Twitter Bootstrap and Foundation</title>
+  
+	<!-- Included CSS Files -->
 	<link rel="stylesheet" type="text/css" href="stylesheets/foundation.css">
 	<link rel="stylesheet" type="text/css" href="stylesheets/app.css">
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:300">
+
+	<!--[if lt IE 9]>
+		<link rel="stylesheet" href="stylesheets/ie.css">
+	<![endif]-->
+
+	
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+  <script type="text/javascript">
+  var dontclick = function() {  
+    alert("Don't click me, drag me!");
+    return false;
+  };
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30567117-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  </script>
 </head>
 <body data-grid-framework="f2" data-grid-color="red" data-grid-opacity="0.5" data-grid-zindex="10">
+
 	<div class="container">
+
 		<header class="row">
 			<div class="ten columns">
-				<h1>Grid displayer for Twitter Bootstrap</h1>
+				<h1>Grid displayer</h1>
+        <h2>for Twitter Bootstrap and Foundation</h2>
+				<p>In-browser web design made easier with this bookmarklet which displays the grid of your favourite front-end framework.</p>
 			</div>
+      <div class="two columns">
+        <ul>      
+					<li><a href="https://twitter.com/intent/tweet?text=Grid%20displayer%20bookmarklet%20for%20%23TwBootstrap%20and%20Foundation&url=http://alefeuvre.github.com/foundation-grid-displayer/&via=jiraisurfer" class="small subtle button">Tweet it</a></li>
+          <li><a href="http://github.com/alefeuvre/foundation-grid-displayer/" class="small subtle button">Fork it</a></li>
+        </ul>
+      </div>
 		</header>
+
+		<div class="row">
+			<div class="four columns">
+				<h2><span class="shine">1</span> Install it</h2>
+        <p class="hide-on-phones">For Firefox and WebKit browsers only.</p>
+        <p class="show-on-phones">Not available for phones. <a href="mailto: ?subject=Grid displayer bookmarklet&body=Hi, Me! Check this out http://alefeuvre.github.com/foundation-grid-displayer/">Send yourself an email</a> to remember to check it out on your computer or tablet.</p>
+      </div>
+			<div class="eight columns">
+				<h2><span class="shine">2</span> Try it</h2>
+        <p>Try the bookmarklet <strong>on this page</strong> or on the following sites:</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="four columns hide-on-phones">
+        <p style="font-weight: bold; text-align: center;">&darr; Drag this button to your bookmarks bar &darr;</p>
+        <p><a href='javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"http://alefeuvre.github.com/foundation-grid-displayer/gd-bookmarklet.min.js";%20%20%20head.appendChild(bklScript);%20})();' onclick="return dontclick();" class="large shine button" title="Grid displayer bookmarklet for Twitter Bootstrap and Foundation">Grid displayer</a></p>                
+        <p style="font-weight: bold; text-align: center;">&uarr; Come one, drag it! &uarr;</p>
+      </div>
+      <div class="four columns">
+        <p style="text-align: center;"><a href="http://www.translationisux.com" target="_blank"><img src="images/example1.png" alt="Translation is UX built with Foundation 2.0"></a><br />
+        Foundation 2.0</p>
+      </div>
+      <div class="four columns">
+        <p style="text-align: center;"><a href="http://www.eisenhower.me" target="_blank"><img src="images/example2.png" alt="Eisenhower app built with Bootstrap (fixed grid, 16 cols)"></a><br />
+        Bootstrap, 16 cols</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="twelve columns">
+        <h2 id="useit"><span class="shine">3</span> Use it regularly</h2>        
+        <p>You'll probably grow tired of editing the parameters every time the page or the displayer is reloaded. Set them once and for all, add these data attributes to the body:</p>
+        <p><script type="text/javascript" src="http://snipt.net/embed/dfa99649ec014f04edda74261dbd3457/"></script></p>        
+      </div>
+    </div>
+    
+    <footer class="row">
+			<div class="twelve columns">
+        <h2>About</h2>        
+				<ul class="disc">
+					<li><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> and <a href="http://foundation.zurb.com">Foundation</a> are two popular front-end frameworks.</li>
+					<li>This bookmarklet was created by <a href="http://twitter.com/jiraisurfer">Antoine Lefeuvre</a>.</li>
+					<li>This bookmarklet is released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</li>
+          <li>Other ressources for <a href="http://bootsnipp.com/resources">Twitter Bootstrap</a> and <a href="http://github.com/zurb/foundation#community">Foundation</a>.</li>
+				</ul>
+			</div>
+		</div>
+
 	</div>
+
+
+	<!-- Included JS Files -->
+	<script src="javascripts/jquery.min.js"></script>
+	<script src="javascripts/modernizr.foundation.js"></script>
+
 </body>
 </html>
