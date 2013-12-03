@@ -36,7 +36,8 @@
           $gdContainer.addClass("container");
           $gdRow.addClass("row");
           // 0-based indexing means that, counter-intuitively, :odd selects the 2th element, 4th element, ...
-          // $gdColumn.addClass("col-lg-1").filter(":odd").addClass("dontshow");    
+          // $gdColumn.addClass("col-lg-1").filter(":odd").addClass("dontshow"); 
+          // Make sure all columns are visible   
           $gdColumn.addClass("col-lg-1");   
           hasBorder = true;
           $gdTools.find(".twb").css("display", "inline-block");
@@ -89,6 +90,9 @@
     // Setters
     setGridColor = function(gridColor, hasBorder) {  
       // $("#grid-displayer .gd-column:not(.dontshow)").css("background-color", gridColor);
+      // Added 15px wide borders to right and left side of columns
+      // View all columns
+      // Remove padding for small 12 column view - fluid display forces padded columns down
       $("#grid-displayer .gd-column").css({"background-color": gridColor, "border-left": "15px solid #fff", "border-right": "15px solid #fff","padding": "0"});
       if (hasBorder) {
         setBorderStyle();
@@ -96,6 +100,7 @@
     },
     setGridOpacity = function(gridOpacity, hasBorder) {  
     	// $("#grid-displayer .gd-column:not(.dontshow)").css("opacity", gridOpacity);
+    	// Make all columns viewable
       $("#grid-displayer .gd-column").css("opacity", gridOpacity);
       if (hasBorder) {
         setBorderStyle();
