@@ -9,16 +9,11 @@ $gdt-font: normal 12px "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-ser
   left: 0;
   width: 100%;
   height: 100%;
-  @include box-sizing(padding-box);
+  @include box-sizing(padding-box);  
+  pointer-events: none;
   
-  .gd-container, .gd-row {
+  .gd-container, .gd-row, .gd-column {
     height: 100%
-  }
-  
-  .gd-column {
-    &:not(.dontshow) {
-      height: 100%;
-    }
   }
 }
 

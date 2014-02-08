@@ -28,52 +28,67 @@
       }
       $gdRow.append(colsHtml); 
       var $gdColumn = $gdRow.find(".gd-column"),
-      hasBorder = false;
+      gutterless = false,
+      isBootstrap = false;
         
       switch(gridFramework) {	
 
         case 'b3':
           $gdContainer.addClass("container");
           $gdRow.addClass("row");
-          $gdColumn.addClass("col-lg-1");   
-          hasBorder = true;
-          $gdTools.find(".twb").css("display", "inline-block");
+          $gdColumn.addClass("col-xs-1"); // Mobile first, stupid!
+          gutterless = true,
+          isBootstrap = true;
         break;
 
         case 'bo':
           $gdContainer.addClass("container");
           $gdRow.addClass("row");
           $gdColumn.addClass("span1");
-          $gdTools.find(".twb").css("display", "inline-block");
+          isBootstrap = true;
         break;
         
         case 'bf':      
           $gdContainer.addClass("container-fluid");
           $gdRow.addClass("row-fluid");
           $gdColumn.addClass("span1");
-          $gdTools.find(".twb").css("display", "inline-block");
+          isBootstrap = true;
         break;
         
         case 'f4':      
+          $gdContainer.addClass("container");
           $gdRow.addClass("row");
-          $gdColumn.addClass("large-1 columns").filter(":odd").addClass("dontshow"); // 0-based indexing means that, counter-intuitively, :odd selects the 2th element, 4th element, ...    
-          hasBorder = true;
+          $gdColumn.addClass("small-1 columns"); // Mobile first, stupid!
+          gutterless = true;
         break;
         
         case 'f3':      
+          $gdContainer.addClass("container");
           $gdRow.addClass("row");
-          $gdColumn.addClass("one columns").filter(":odd").addClass("dontshow");
-          hasBorder = true;
+          $gdColumn.addClass("one columns");
+          gutterless = true;
         break;
         
         case 'f2':
+          $gdContainer.addClass("container");
           $gdRow.addClass("row");
           $gdColumn.addClass("one columns");
         break;
+      }      
+      
+      if (gutterless) {
+        $gdTools.find(".gutterless").css("display", "inline-block");
+        setGridGutters($gdTools.find("#gdt-gutterwidth").val());
+      } else {
+        $gdColumn.css({"border": "0"}); // Border reset, might not needed        
       }
       
-      setGridColor($gdTools.find("#gdt-color").val(), hasBorder);
-      setGridOpacity($gdTools.find("#gdt-opacity").val(), hasBorder);
+      if (isBootstrap) {
+        $gdTools.find(".twb").css("display", "inline-block");
+      }
+      
+      setGridColor($gdTools.find("#gdt-color").val(), gutterless);
+      setGridOpacity($gdTools.find("#gdt-opacity").val());
       
       if (!gdIsBuilt) {
         $gdTools.find("#gdt-options").css("display", "block"); // as the CSS is loaded after the JS, show() is overwritten by display: none
@@ -85,25 +100,22 @@
     },
     
     // Setters
-    setGridColor = function(gridColor, hasBorder) {  
-      $("#grid-displayer .gd-column").css({"background-color": gridColor, "border-left": "15px solid #fff", "border-right": "15px solid #fff","padding": "0"});
-      if (hasBorder) {
-        setBorderStyle();
+    setGridColor = function(gridColor, gutterless) {        
+      $("#grid-displayer .gd-column").css("background-color", gridColor);      
+      if (gutterless) {
+        $("#grid-displayer .gd-column").css("outline", "1px solid " + gridColor);      
       }
     },
-    setGridOpacity = function(gridOpacity, hasBorder) {  
+    setGridOpacity = function(gridOpacity) {  
       $("#grid-displayer .gd-column").css("opacity", gridOpacity);
-      if (hasBorder) {
-        setBorderStyle();
-      }
+    },
+    setGridGutters = function(gridGutterwidth) {      
+      var borderWidth = parseInt(gridGutterwidth.replace( /^\D+/g, '')) / 2,
+      unit = gridGutterwidth.substr(gridGutterwidth.length - 2, 2);
+      $("#grid-displayer .gd-column").css({"border-width": "0 " + borderWidth + unit, "border-style": "solid", "border-color": "#FFF", "padding": 0}); // Remove padding for small 12 column view - fluid display forces padded columns down        
     },
     setGridZindex = function(gridZindex) {  
       $("#grid-displayer").css("z-index", gridZindex);
-    },
-    setBorderStyle = function() { // If only outline-opacity existed...
-      var outlineOpacity = parseFloat($("#grid-displayer .gd-column:first-child").css("opacity")) + 0.5,
-          rgbaColor = $("#grid-displayer .gd-column:first-child").css("background-color").replace('rgb', 'rgba').replace(')',', ' + outlineOpacity + ')'); // I'm not proud of this. If you have a nicer solution, your pull request is very welcome.
-      $("#grid-displayer .gd-row").css("outline", "2px solid " + rgbaColor);
     };
     
     if ($("#grid-displayer").length) { // Close grid displayer when the bookmarklet is clicked for a second time
@@ -113,22 +125,24 @@
       // Default parameters
       var dataGridFramework = $("body").data("grid-framework"),
       dataGridNbcols        = $("body").data("grid-nbcols"),
+      dataGridGutterwidth   = $("body").data("grid-gutterwidth"),
       dataGridColor         = $("body").data("grid-color"),
       dataGridOpacity       = $("body").data("grid-opacity"),
       dataGridZindex        = $("body").data("grid-zindex"),
       
-      gdFramework           = (typeof dataGridFramework === "undefined") ? "" : dataGridFramework,
-      gdNbcols              = (typeof dataGridNbcols === "undefined") ?    "12" : dataGridNbcols,
-      gdColor               = (typeof dataGridColor === "undefined") ?     "black" : dataGridColor,
-      gdOpacity             = (typeof dataGridOpacity === "undefined") ?   "0.3" : dataGridOpacity,
-      gdZindex              = (typeof dataGridZindex === "undefined") ?    "999" : dataGridZindex;
+      gdFramework           = (typeof dataGridFramework === "undefined") ?   "" : dataGridFramework,
+      gdNbcols              = (typeof dataGridNbcols === "undefined") ?      "12" : dataGridNbcols,
+      gdGutterwidth         = (typeof dataGridGutterwidth === "undefined") ? "30px" : dataGridGutterwidth,
+      gdColor               = (typeof dataGridColor === "undefined") ?       "black" : dataGridColor,
+      gdOpacity             = (typeof dataGridOpacity === "undefined") ?     "0.3" : dataGridOpacity,
+      gdZindex              = (typeof dataGridZindex === "undefined") ?      "999" : dataGridZindex;
       
       // HTML
       var gridHtml = "<div id=\"grid-displayer\" style=\"display: none;\"><div class=\"gd-container\"><div class=\"gd-row\"></div></div></div>",
-      frameworks = {"b3": "NEW Bootstrap 3",
+      frameworks = {"b3": "Bootstrap 3",
                     "bo": "Bootstrap 2",
                     "bf": "Bootstrap 2 (fluid)",
-                    "f4": "NEW Foundation 4",
+                    "f4": "Foundation 4 & 5",
                     "f3": "Foundation 3",
                     "f2": "Foundation 2" },
       gridToolsHtml = "<div id=\"grid-displayer-tools\">"
@@ -144,6 +158,7 @@
                     + "  <div id=\"gdt-options\" class=\"gdt-field\">"
                     + "    <div><label for=\"gdt-color\">Columns colour</label><input type=\"text\" id=\"gdt-color\" value=\"" + gdColor + "\" /></div>"
                     +     "<div><label for=\"gdt-opacity\">Opacity</label><input type=\"text\" id=\"gdt-opacity\" value=\"" + gdOpacity + "\" /></div>"
+                    +     "<div class=\"framework-specific gutterless\"><label for=\"gdt-gutterwidth\">Gutter width</label><input type=\"text\" id=\"gdt-gutterwidth\" value=\"" + gdGutterwidth + "\" /></div>"
                     +     "<div class=\"framework-specific twb\"><label for=\"gdt-nbcols\">Nb cols</label><input type=\"text\" id=\"gdt-nbcols\" value=\"" + gdNbcols + "\" /></div>"
                     +     "<div><label for=\"gdt-zindex\">z-index</label><input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>"
                     + "  </div>"
@@ -165,7 +180,7 @@
           window.open("http://snipt.net/jiraisurfer/custom-parameters-for-foundation-grid-displayer/");
         } else {
           gdFramework = $(this).val();
-          gdHasBorder = (gdFramework == "b3" || gdFramework == "f4" || gdFramework == "f3") ? true : false;
+          gdIsGutterless = (gdFramework == "b3" || gdFramework == "f4" || gdFramework == "f3") ? true : false;
           if (gdFramework == "f4" || gdFramework == "f3" || gdFramework == "f2") { // Reset to 12 cols when switching from Bootstrap to Foundation, in case nb cols has been changed
             $("#grid-displayer-tools #gdt-nbcols").val(12);
           }
@@ -176,10 +191,13 @@
         buildGridDisplayer(gdFramework);
       });    
       $("#grid-displayer-tools #gdt-color").change(function() {
-        setGridColor($(this).val(), gdHasBorder);
+        setGridColor($(this).val(), gdIsGutterless);
       });    
       $("#grid-displayer-tools #gdt-opacity").change(function() {
-        setGridOpacity($(this).val(), gdHasBorder);
+        setGridOpacity($(this).val());
+      });    
+      $("#grid-displayer-tools #gdt-gutterwidth").change(function() {
+        setGridGutters($(this).val());
       });    
       $("#grid-displayer-tools #gdt-zindex").change(function() {
         setGridZindex($(this).val());
