@@ -6,4 +6,4 @@ In-browser web design made easier with this bookmarklet which displays the grid 
 * Supports Twitter Bootstrap (versions 2 and 3) and Foundation (versions 2, 3 , 4 and 5).
 * This bookmarklet was created by [Antoine Lefeuvre](http://twitter.com/jiraisurfer).
 * This bookmarklet is released under the MIT license.
-* Latest version: 3.0 ([changelog](/CHANGELOG.md))
+* Latest version: 3.1 ([changelog](/CHANGELOG.md))

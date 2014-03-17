@@ -44,7 +44,7 @@
         case 'b3f':
           $gdContainer.addClass("container-fluid");
           $gdRow.addClass("row");
-          $gdColumn.addClass("col-xs-1"); // Mobile first, stupid!
+          $gdColumn.addClass("col-xs-1");
           gutterless = true,
           isBootstrap = true;
         break;

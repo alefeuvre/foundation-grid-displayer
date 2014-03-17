@@ -20,3 +20,6 @@
 * Enhancement: Showing "gutters" (i.e. column padding) for gutterless grid systems—Bootstrap 3, Foundation 4 & 5 ([PR #9](https://github.com/alefeuvre/foundation-grid-displayer/pull/9) thanks @JayVerb)
 * Enhancement: Changeable gutters' width
 * Enhancement: Foundation 5.0 support
+
+## Version 3.1 - March 17, 2014
+* Enhancement: Bootstrap 3.0 fluid grid support ([PR #10](https://github.com/alefeuvre/foundation-grid-displayer/pull/10) thanks @chetan)
