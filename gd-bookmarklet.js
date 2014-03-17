@@ -1,40 +1,48 @@
-(function() {  
+(function() {
   var startBookmarklet = function($) {
-  
+
     // Close grid displayer
-    var removeGridDisplayer = function() {  
+    var removeGridDisplayer = function() {
       $("#grid-displayer-tools").remove();
       $("#grid-displayer").remove();
     },
-    
+
     // Build grid displayer
     gdIsBuilt = false,
     buildGridDisplayer = function(gridFramework) {
-    
+
       var $gdContainer = $("#grid-displayer .gd-container"),
       $gdRow           = $("#grid-displayer .gd-row"),
       $gdTools         = $("#grid-displayer-tools"),
       colsHtml         = "",
       gridNbcols       = parseInt($gdTools.find("#gdt-nbcols").val());
-      
+
       if (gdIsBuilt) {
         $gdContainer.removeClass().addClass("gd-container");
         $gdRow.removeClass().addClass("gd-row").css("border-right", 0).empty();
         $gdTools.find(".framework-specific").hide();
       }
-      
+
       for(var i = 0; i < gridNbcols; i++) {
         colsHtml += "<div class=\"gd-column\">&nbsp;</div>";
       }
-      $gdRow.append(colsHtml); 
+      $gdRow.append(colsHtml);
       var $gdColumn = $gdRow.find(".gd-column"),
       gutterless = false,
       isBootstrap = false;
-        
-      switch(gridFramework) {	
+
+      switch(gridFramework) {
 
         case 'b3':
           $gdContainer.addClass("container");
+          $gdRow.addClass("row");
+          $gdColumn.addClass("col-xs-1"); // Mobile first, stupid!
+          gutterless = true,
+          isBootstrap = true;
+        break;
+
+        case 'b3f':
+          $gdContainer.addClass("container-fluid");
           $gdRow.addClass("row");
           $gdColumn.addClass("col-xs-1"); // Mobile first, stupid!
           gutterless = true,
@@ -47,49 +55,49 @@
           $gdColumn.addClass("span1");
           isBootstrap = true;
         break;
-        
-        case 'bf':      
+
+        case 'bf':
           $gdContainer.addClass("container-fluid");
           $gdRow.addClass("row-fluid");
           $gdColumn.addClass("span1");
           isBootstrap = true;
         break;
-        
-        case 'f4':      
+
+        case 'f4':
           $gdContainer.addClass("container");
           $gdRow.addClass("row");
           $gdColumn.addClass("small-1 columns"); // Mobile first, stupid!
           gutterless = true;
         break;
-        
-        case 'f3':      
+
+        case 'f3':
           $gdContainer.addClass("container");
           $gdRow.addClass("row");
           $gdColumn.addClass("one columns");
           gutterless = true;
         break;
-        
+
         case 'f2':
           $gdContainer.addClass("container");
           $gdRow.addClass("row");
           $gdColumn.addClass("one columns");
         break;
-      }      
-      
+      }
+
       if (gutterless) {
         $gdTools.find(".gutterless").css("display", "inline-block");
         setGridGutters($gdTools.find("#gdt-gutterwidth").val());
       } else {
-        $gdColumn.css({"border": "0"}); // Border reset, might not needed        
+        $gdColumn.css({"border": "0"}); // Border reset, might not needed
       }
-      
+
       if (isBootstrap) {
         $gdTools.find(".twb").css("display", "inline-block");
       }
-      
+
       setGridColor($gdTools.find("#gdt-color").val(), gutterless);
       setGridOpacity($gdTools.find("#gdt-opacity").val());
-      
+
       if (!gdIsBuilt) {
         $gdTools.find("#gdt-options").css("display", "block"); // as the CSS is loaded after the JS, show() is overwritten by display: none
         $gdTools.find("#gdt-ok").css("display", "block");
@@ -98,30 +106,30 @@
         gdIsBuilt = true;
       }
     },
-    
+
     // Setters
-    setGridColor = function(gridColor, gutterless) {        
-      $("#grid-displayer .gd-column").css("background-color", gridColor);      
+    setGridColor = function(gridColor, gutterless) {
+      $("#grid-displayer .gd-column").css("background-color", gridColor);
       if (gutterless) {
-        $("#grid-displayer .gd-column").css("outline", "1px solid " + gridColor);      
+        $("#grid-displayer .gd-column").css("outline", "1px solid " + gridColor);
       }
     },
-    setGridOpacity = function(gridOpacity) {  
+    setGridOpacity = function(gridOpacity) {
       $("#grid-displayer .gd-column").css("opacity", gridOpacity);
     },
-    setGridGutters = function(gridGutterwidth) {      
+    setGridGutters = function(gridGutterwidth) {
       var borderWidth = parseInt(gridGutterwidth.replace( /^\D+/g, '')) / 2,
       unit = gridGutterwidth.substr(gridGutterwidth.length - 2, 2);
-      $("#grid-displayer .gd-column").css({"border-width": "0 " + borderWidth + unit, "border-style": "solid", "border-color": "#FFF", "padding": 0}); // Remove padding for small 12 column view - fluid display forces padded columns down        
+      $("#grid-displayer .gd-column").css({"border-width": "0 " + borderWidth + unit, "border-style": "solid", "border-color": "#FFF", "padding": 0}); // Remove padding for small 12 column view - fluid display forces padded columns down
     },
-    setGridZindex = function(gridZindex) {  
+    setGridZindex = function(gridZindex) {
       $("#grid-displayer").css("z-index", gridZindex);
     };
-    
+
     if ($("#grid-displayer").length) { // Close grid displayer when the bookmarklet is clicked for a second time
-      removeGridDisplayer();    
+      removeGridDisplayer();
     } else {
-    
+
       // Default parameters
       var dataGridFramework = $("body").data("grid-framework"),
       dataGridNbcols        = $("body").data("grid-nbcols"),
@@ -129,17 +137,18 @@
       dataGridColor         = $("body").data("grid-color"),
       dataGridOpacity       = $("body").data("grid-opacity"),
       dataGridZindex        = $("body").data("grid-zindex"),
-      
+
       gdFramework           = (typeof dataGridFramework === "undefined") ?   "" : dataGridFramework,
       gdNbcols              = (typeof dataGridNbcols === "undefined") ?      "12" : dataGridNbcols,
       gdGutterwidth         = (typeof dataGridGutterwidth === "undefined") ? "30px" : dataGridGutterwidth,
       gdColor               = (typeof dataGridColor === "undefined") ?       "black" : dataGridColor,
       gdOpacity             = (typeof dataGridOpacity === "undefined") ?     "0.3" : dataGridOpacity,
       gdZindex              = (typeof dataGridZindex === "undefined") ?      "999" : dataGridZindex;
-      
+
       // HTML
       var gridHtml = "<div id=\"grid-displayer\" style=\"display: none;\"><div class=\"gd-container\"><div class=\"gd-row\"></div></div></div>",
       frameworks = {"b3": "Bootstrap 3",
+                    "b3f": "Bootstrap 3 (fluid)",
                     "bo": "Bootstrap 2",
                     "bf": "Bootstrap 2 (fluid)",
                     "f4": "Foundation 4 & 5",
@@ -148,7 +157,7 @@
       gridToolsHtml = "<div id=\"grid-displayer-tools\">"
                     + "  <div class=\"gdt-field\"><select id=\"gdt-framework\">"
                     + "    <option>&darr; Choose your framework</option>";
-      $.each(frameworks, function(key, value) {     
+      $.each(frameworks, function(key, value) {
         gridToolsHtml += "<option value=\"" + key + "\"";
         gridToolsHtml += (key == gdFramework) ? " selected" : "";
         gridToolsHtml += ">" + value + "</option>";
@@ -165,62 +174,62 @@
                     + "  <div class=\"gdt-button\" id=\"gdt-ok\"><a href=\"#\">OK</a></div>"
                     + "  <div class=\"gdt-button\"><a href=\"#\" id=\"gdt-close\">Close</a></div>"
                     + "</div>";
-      
+
       $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/gd-bookmarklet.min.css'>");
-      $("body").prepend(gridHtml).prepend(gridToolsHtml);  
-      $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1); 
-      
+      $("body").prepend(gridHtml).prepend(gridToolsHtml);
+      $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1);
+
       if (typeof dataGridFramework !== "undefined") {
         buildGridDisplayer(gdFramework);
       }
-      
+
       // Actions
       $("#grid-displayer-tools #gdt-framework").change(function() {
         if ($(this).val() == "tired") {
           window.open("http://snipt.net/jiraisurfer/custom-parameters-for-foundation-grid-displayer/");
         } else {
           gdFramework = $(this).val();
-          gdIsGutterless = (gdFramework == "b3" || gdFramework == "f4" || gdFramework == "f3") ? true : false;
+          gdIsGutterless = (gdFramework == "b3" || gdFramework == "b3f" || gdFramework == "f4" || gdFramework == "f3") ? true : false;
           if (gdFramework == "f4" || gdFramework == "f3" || gdFramework == "f2") { // Reset to 12 cols when switching from Bootstrap to Foundation, in case nb cols has been changed
             $("#grid-displayer-tools #gdt-nbcols").val(12);
           }
           buildGridDisplayer(gdFramework);
         }
-      });    
+      });
       $("#grid-displayer-tools #gdt-nbcols").change(function() {
         buildGridDisplayer(gdFramework);
-      });    
+      });
       $("#grid-displayer-tools #gdt-color").change(function() {
         setGridColor($(this).val(), gdIsGutterless);
-      });    
+      });
       $("#grid-displayer-tools #gdt-opacity").change(function() {
         setGridOpacity($(this).val());
-      });    
+      });
       $("#grid-displayer-tools #gdt-gutterwidth").change(function() {
         setGridGutters($(this).val());
-      });    
+      });
       $("#grid-displayer-tools #gdt-zindex").change(function() {
         setGridZindex($(this).val());
-      });    
-      
+      });
+
       $("#grid-displayer-tools #gdt-close").click(function() {
         removeGridDisplayer();
       });
-    } 
-  };  
+    }
+  };
 
   // Load jQuery from CDN if needed
-  if (!window.jQuery) {    
+  if (!window.jQuery) {
     var head = document.getElementsByTagName("head")[0],
         jQueryScript = document.createElement("script");
     jQueryScript.type = "text/javascript";
     jQueryScript.src  = "http://code.jquery.com/jquery-1.10.0.min.js";
     jQueryScript.onload = function() { startBookmarklet(window.jQuery); };
     head.appendChild(jQueryScript);
-  } else {    
+  } else {
     startBookmarklet(window.jQuery);
   }
-  
+
   /**
    * Google Analytics JS v1
    * http://code.google.com/p/google-analytics-js/
@@ -228,11 +237,11 @@
    * $Date: 2009-02-25 14:25:01 +0000 (Wed, 25 Feb 2009) $
    */
   (function(urchinCode, domain, url) {
-      
+
     function rand(min, max) {
         return min + Math.floor(Math.random() * (max - min));
     }
-      
+
     var i=1000000000,
         utmn=rand(i,9999999999), //random request number
         cookie=rand(10000000,99999999), //random cookie number
