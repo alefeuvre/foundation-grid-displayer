@@ -11,6 +11,11 @@ h2 .shine {
   padding: 0 0.2em;
 }
 
+h3 {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
 .shine {
   background-color: #c70808;
   color: #F6F4E9;
@@ -44,7 +49,7 @@ header a.button {
 
 .buttons iframe {
   float: right;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem 2rem;
 }
 
 #example1, #example2 {
