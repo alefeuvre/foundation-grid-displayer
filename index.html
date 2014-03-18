@@ -50,17 +50,22 @@
 	<div class="container">
 
 		<header class="row">
-			<div class="nine columns">
+			<div class="ten columns">
 				<h1>Grid displayer</h1>
 				<h2>for Twitter Bootstrap and Foundation</h2>
 				<p>In-browser web design made easier with this bookmarklet which displays the grid of your favourite front-end framework.</p>
 			</div>
-      <div class="three columns">
-        <ul>      
+      <div class="two columns buttons"> 
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://alefeuvre.github.io/foundation-grid-displayer/" data-text="Grid displayer bookmarklet for #TwBootstrap and Foundation" data-via="GridDisplayer" data-align="right">Tweet</a>        
+        <iframe src="http://ghbtns.com/github-btn.html?user=alefeuvre&repo=foundation-grid-displayer&type=watch&count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="84" height="20"></iframe><!-- width 84 instead of default 110 = cheap align right -->  
+        <a href="https://news.ycombinator.com/submit" class="hn-button" data-title="Grid displayer bookmarklet for Twitter Bootstrap and Foundation" data-url="http://alefeuvre.github.io/foundation-grid-displayer/" data-count="horizontal" data-style="twitter">Vote on Hacker News</a>
+
+        <!--<ul>      
 					<li><a href="http://twitter.com/intent/tweet?text=Grid%20displayer%20bookmarklet%20for%20%23TwBootstrap%20and%20Foundation&url=http://alefeuvre.github.com/foundation-grid-displayer/&via=jiraisurfer" class="small subtle button">Tweet it</a></li>
           <li><a href="http://github.com/alefeuvre/foundation-grid-displayer/" class="small subtle button">Fork it on GitHub</a></li>
           <li><a href="http://news.ycombinator.com/item?id=6135451" class="small subtle button">Discuss on Hacker News</a></li>
-        </ul>
+        </ul>-->
       </div>
 		</header>
 
@@ -118,6 +123,7 @@
 	<!-- Included JS Files -->
 	<script src="javascripts/jquery.min.js"></script>
 	<script src="javascripts/modernizr.foundation.js"></script>
-
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <script type="text/javascript">var HN=[];HN.factory=function(e){return function(){HN.push([e].concat(Array.prototype.slice.call(arguments,0)))};},HN.on=HN.factory("on"),HN.once=HN.factory("once"),HN.off=HN.factory("off"),HN.emit=HN.factory("emit"),HN.load=function(){var e="hn-button.js";if(document.getElementById(e))return;var t=document.createElement("script");t.id=e,t.src="//hn-button.herokuapp.com/hn-button.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)},HN.load();</script>
 </body>
 </html>

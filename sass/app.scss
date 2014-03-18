@@ -49,6 +49,11 @@ header {
   }
 }
 
+.buttons iframe {
+  float: right;
+  margin-bottom: 0.5rem;
+}
+
 #example1, #example2 {
   height: 15rem;
   background-repeat: no-repeat;
