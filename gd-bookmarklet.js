@@ -171,7 +171,7 @@
                     +     "<div class=\"framework-specific twb\"><label for=\"gdt-nbcols\">Nb cols</label><input type=\"text\" id=\"gdt-nbcols\" value=\"" + gdNbcols + "\" /></div>"
                     +     "<div><label for=\"gdt-zindex\">z-index</label><input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>"
                     + "  </div>"
-                    + "  <div class=\"gdt-button\" id=\"gdt-ok\"><a href=\"#\">OK</a></div>"
+                    + "  <div class=\"gdt-button\" id=\"gdt-ok\"><a href=\"javascript:;\">OK</a></div>"
                     + "  <div class=\"gdt-button\"><a href=\"javascript:;\" id=\"gdt-close\">Close</a></div>"
                     + "</div>";
 
