@@ -172,10 +172,10 @@
                     +     "<div><label for=\"gdt-zindex\">z-index</label><input type=\"text\" id=\"gdt-zindex\" value=\"" + gdZindex + "\" /></div>"
                     + "  </div>"
                     + "  <div class=\"gdt-button\" id=\"gdt-ok\"><a href=\"javascript:;\">OK</a></div>"
-                    + "  <div class=\"gdt-button\"><a href=\"javascript:;\" id=\"gdt-close\">Close</a></div>"
+                    + "  <div class=\"gdt-button\"><a href=\"#null\" id=\"gdt-close\">Close</a></div>"
                     + "</div>";
 
-      $("head").append("<link rel='stylesheet' type='text/css' href='http://alefeuvre.github.com/foundation-grid-displayer/stylesheets/gd-bookmarklet.min.css'>");
+      $("head").append("<link rel='stylesheet' type='text/css' href='//alefeuvre.github.com/foundation-grid-displayer/stylesheets/gd-bookmarklet.min.css'>");
       $("body").prepend(gridHtml).prepend(gridToolsHtml);
       $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1);
 
@@ -223,7 +223,7 @@
     var head = document.getElementsByTagName("head")[0],
         jQueryScript = document.createElement("script");
     jQueryScript.type = "text/javascript";
-    jQueryScript.src  = "http://code.jquery.com/jquery-1.10.0.min.js";
+    jQueryScript.src  = "//code.jquery.com/jquery-1.10.0.min.js";
     jQueryScript.onload = function() { startBookmarklet(window.jQuery); };
     head.appendChild(jQueryScript);
   } else {
