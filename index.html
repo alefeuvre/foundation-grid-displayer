@@ -11,7 +11,7 @@
 	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width" />
 	
-	<title>Grid displayer bookmarklet for Twitter Bootstrap and Foundation</title>
+	<title>Grid displayer bookmarklet for Twitter Bootstrap and ZURB Foundation</title>
   
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" type="text/css" href="stylesheets/foundation.css">
@@ -28,9 +28,29 @@
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
   <script type="text/javascript">
-  var dontclick = function() {  
+  var dontClick = function() {  
     alert("Don't click me, drag me!");
     return false;
+  };
+  
+  var buildCall = function() {  
+    var callHrefPart1 = 'javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"//alefeuvre.github.com/foundation-grid-displayer/gd-bookmarklet.min.js',
+    callHrefPart2 = '";%20%20%20head.appendChild(bklScript);%20})();',
+    callHref = "";
+    
+    if ($('#fw-b').attr('checked') && !$('#fw-f').attr('checked')) { // Bootstrap only
+      callHref = callHrefPart1 + "?bmletFramework=b" + callHrefPart2;
+    }
+    
+    if ($('#fw-f').attr('checked') && !$('#fw-b').attr('checked')) { // Foundation only
+      callHref = callHrefPart1 + "?bmletFramework=f" + callHrefPart2;
+    }
+    
+    if (callHref == "") {
+      callHref = callHrefPart1 + callHrefPart2;
+    }
+    
+    $("#bmletButton").attr("href", callHref);
   };
 
   var _gaq = _gaq || [];
@@ -45,7 +65,7 @@
 
   </script>
 </head>
-<body data-grid-framework="f2" data-grid-color="red" data-grid-opacity="0.5" data-grid-zindex="10">
+<body data-grid-framework="f2" data-grid-color="red" data-grid-opacity="0.5" data-grid-zindex="10" onload="buildCall();">
 
 	<div class="container">
 
@@ -77,8 +97,10 @@
     <div class="row">
       <div class="four columns hide-on-phones">
         <p style="font-weight: bold; text-align: center;">&darr; Drag this button to your bookmarks bar &darr;</p>
-        <p><a href='javascript:(function()%20{%20%20%20var%20head%20=%20document.getElementsByTagName("head")[0];%20%20%20var%20bklScript%20=%20document.createElement("script");%20%20%20bklScript.type%20=%20"text/javascript";%20%20%20bklScript.src%20=%20"//alefeuvre.github.com/foundation-grid-displayer/gd-bookmarklet.min.js";%20%20%20head.appendChild(bklScript);%20})();' onclick="return dontclick();" class="large shine button" title="Grid displayer bookmarklet for Twitter Bootstrap and Foundation">Grid displayer</a></p>                
-        <p style="font-weight: bold; text-align: center;">&uarr; Come on, drag it! &uarr;</p>
+        <p style="margin-bottom: 0em;"><a href="#" id="bmletButton" onclick="return dontClick();" class="large shine button" title="Grid displayer bookmarklet for Bootstrap and Foundation">Grid displayer</a></p>                
+        <p class="shine" style="padding: 0 0 0.5em; text-align: center;">for
+        <input type="checkbox" id="fw-b" onclick="buildCall();" checked /> <label for="fw-b">Bootstrap</label>
+        <input type="checkbox" id="fw-f" onclick="buildCall();" checked /> <label for="fw-f">Foundation</label></p>
       </div>
       <div class="four columns">
         <p style="text-align: center;"><a href="http://www.copyisdesign.com" target="_blank"><img src="images/example1.png" alt="Copy is design built with Foundation 4"></a><br />
@@ -124,11 +146,11 @@
 			<div class="twelve columns">
         <h2>About</h2>        
 				<ul class="disc">
-					<li><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> and <a href="http://foundation.zurb.com">Foundation</a> are two popular front-end frameworks.</li>
+					<li><a href="http://getbootstrap.com">Bootstrap</a> and <a href="http://foundation.zurb.com">Foundation</a> are two popular front-end frameworks.</li>
 					<li>This bookmarklet is designed and built by <a href="http://twitter.com/jiraisurfer">Antoine Lefeuvre</a> with help from <a href="https://github.com/alefeuvre/foundation-grid-displayer/pulls?state=closed">contributors</a>.</li>
 					<li>This bookmarklet is released under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT license</a>.</li>
-					<li>Current version: <a href="https://github.com/alefeuvre/foundation-grid-displayer/blob/gh-pages/CHANGELOG.md">3.1</a>.</li>
-					<li>Other ressources for <a href="http://bootsnipp.com/resources">Twitter Bootstrap</a> and <a href="http://github.com/zurb/foundation#community">Foundation</a>.</li>
+					<li>Current version: <a href="https://github.com/alefeuvre/foundation-grid-displayer/blob/gh-pages/CHANGELOG.md">3.2</a>.</li>
+					<li>Other ressources for <a href="http://bootsnipp.com/resources">Bootstrap</a> and <a href="http://github.com/zurb/foundation#community">Foundation</a>.</li>
 				</ul>
 			</div>
 		</div>

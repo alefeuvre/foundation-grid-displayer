@@ -1,11 +1,18 @@
 (function() {
-  var startBookmarklet = function($) {
+  var startBookmarklet = function($) {      
+    
+    // Set bookmarklet framework
+    var scriptSrc  = $("script[src*='gd-bookmarklet.min.js']").attr("src"),
+    bmletFramework = scriptSrc.substr(scriptSrc.length - 1, 1);
+    if (bmletFramework != "b" && bmletFramework != "f") {
+      bmletFramework = "both";
+    }
 
     // Close grid displayer
     var removeGridDisplayer = function() {
       $("#grid-displayer-tools").remove();
       $("#grid-displayer").remove();
-    },
+    },      
 
     // Build grid displayer
     gdIsBuilt = false,
@@ -145,22 +152,43 @@
       gdOpacity             = (typeof dataGridOpacity === "undefined") ?     "0.3" : dataGridOpacity,
       gdZindex              = (typeof dataGridZindex === "undefined") ?      "999" : dataGridZindex;
 
+      // Frameworks list      
+      bootstraps  = [["b3", "Bootstrap 3"],
+                     ["b3f", "Bootstrap 3 (fluid)"],
+                     ["bo", "Bootstrap 2"],
+                     ["bf", "Bootstrap 2 (fluid)"]],
+      foundations = [["f4", "Foundation 4 & 5"],
+                     ["f3", "Foundation 3"],
+                     ["f2", "Foundation 2"]];
+      switch(bmletFramework) {               
+        case "b":
+          frameworks = bootstraps;           
+          if (gdFramework == "") {
+            gdFramework = "b3";
+          }
+        break;
+        
+        case "f":
+          frameworks = foundations;           
+          if (gdFramework == "") {
+            gdFramework = "f4";
+          }
+        break;
+        
+        case "both":
+          frameworks = bootstraps.concat(foundations);
+        break;
+      }
+      
       // HTML
       var gridHtml = "<div id=\"grid-displayer\" style=\"display: none;\"><div class=\"gd-container\"><div class=\"gd-row\"></div></div></div>",
-      frameworks = {"b3": "Bootstrap 3",
-                    "b3f": "NEW Bootstrap 3 (fluid)",
-                    "bo": "Bootstrap 2",
-                    "bf": "Bootstrap 2 (fluid)",
-                    "f4": "Foundation 4 & 5",
-                    "f3": "Foundation 3",
-                    "f2": "Foundation 2" },
       gridToolsHtml = "<div id=\"grid-displayer-tools\">"
                     + "  <div class=\"gdt-field\"><select id=\"gdt-framework\">"
-                    + "    <option>&darr; Choose your framework</option>";
-      $.each(frameworks, function(key, value) {
-        gridToolsHtml += "<option value=\"" + key + "\"";
-        gridToolsHtml += (key == gdFramework) ? " selected" : "";
-        gridToolsHtml += ">" + value + "</option>";
+                    + "    <option>&darr; Choose your framework</option>"; 
+      $.each(frameworks, function(index, value) {
+        gridToolsHtml += "<option value=\"" + value[0] + "\"";
+        gridToolsHtml += (value[0] == gdFramework) ? " selected" : "";
+        gridToolsHtml += ">" + value[1] + "</option>";
       });
       gridToolsHtml += "    <option value=\"tired\">I'm tired of choosing my framework</option>"
                     + "  </select></div>"
@@ -179,7 +207,7 @@
       $("body").prepend(gridHtml).prepend(gridToolsHtml);
       $("#grid-displayer-tools").delay(1200).fadeTo("slow",0.1);
 
-      if (typeof dataGridFramework !== "undefined") {
+      if (gdFramework != "") {
         buildGridDisplayer(gdFramework);
       }
 
