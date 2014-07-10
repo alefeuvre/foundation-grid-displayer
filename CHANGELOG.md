@@ -27,4 +27,4 @@
 ## Version 3.2 - June 25, 2014
 * Enhancement: Custom bookmarklet 'install' with the following options: Bootstrap only, Foundation only or both frameworks ([issue #12](https://github.com/alefeuvre/foundation-grid-displayer/issues/12) thanks @pentago)
 * Enhancement: HTTPS support ([issue #15](https://github.com/alefeuvre/foundation-grid-displayer/issues/15) thanks @chris37879)
-* Bugfix: Better link for the close button ([issue #13](https://github.com/alefeuvre/foundation-grid-displayer/issues/13) thanks @alexismangin)
+* Bugfix: Better link for the close button ([PR #13](https://github.com/alefeuvre/foundation-grid-displayer/pull/13) thanks @alexismangin)
